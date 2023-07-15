@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2ho8kuoruta4"]
+[gd_scene load_steps=12 format=3 uid="uid://d2ho8kuoruta4"]
 
 [ext_resource type="Script" path="res://scripts/level_01_2d.gd" id="1_5qxnk"]
 [ext_resource type="Texture2D" uid="uid://c4kj7s7kyblt6" path="res://assets/sprites/tilesets/tilesheet_complete.png" id="1_bh5e7"]
 [ext_resource type="Texture2D" uid="uid://rer87qkuee7s" path="res://icon.svg" id="2_g4cgv"]
 [ext_resource type="PackedScene" uid="uid://dxl6tt2rnhma2" path="res://scenes/player_2d.tscn" id="3_jtq48"]
 [ext_resource type="PackedScene" uid="uid://c5k087o678i4s" path="res://scenes/table_2d.tscn" id="5_1kj1l"]
+[ext_resource type="FontFile" uid="uid://dgr7ev4mi17td" path="res://fonts/WendyOne-Regular.ttf" id="6_4rvtw"]
+[ext_resource type="Texture2D" uid="uid://cx4l5waf4bpjt" path="res://assets/sprites/GUI/Menu/panel_beigeLight.png" id="7_mvpv3"]
+[ext_resource type="PackedScene" uid="uid://da3gwwenk0v72" path="res://scenes/task.tscn" id="7_u8qcs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ownff"]
 texture = ExtResource("1_bh5e7")
@@ -538,6 +541,10 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_ownff")
 
+[sub_resource type="Theme" id="Theme_s62e6"]
+default_font = ExtResource("6_4rvtw")
+default_font_size = 24
+
 [node name="Level_01_2D" type="Node2D"]
 script = ExtResource("1_5qxnk")
 
@@ -548,13 +555,12 @@ format = 2
 layer_0/tile_data = PackedInt32Array(131081, 589824, 4, 196617, 720896, 5, 262153, 720896, 5, 327689, 720896, 5, 393225, 720896, 5, 458761, 720896, 5, 524297, 720896, 5, 589833, 720896, 5, 655369, 720896, 5, 720905, 720896, 5, 786441, 720896, 5, 851977, 589824, 5, 131082, 720896, 4, 851978, 720896, 4, 131083, 720896, 4, 851979, 720896, 4, 131084, 720896, 4, 851980, 720896, 4, 131085, 720896, 4, 851981, 720896, 4, 131086, 720896, 4, 851982, 720896, 4, 131087, 720896, 4, 851983, 720896, 4, 131088, 720896, 4, 851984, 720896, 4, 131089, 720896, 4, 851985, 720896, 4, 131090, 720896, 4, 851986, 720896, 4, 131091, 720896, 4, 851987, 720896, 4, 131092, 655360, 4, 196628, 720896, 5, 262164, 720896, 5, 327700, 720896, 5, 393236, 720896, 5, 458772, 720896, 5, 524308, 720896, 5, 589844, 720896, 5, 655380, 720896, 5, 720916, 720896, 5, 786452, 720896, 5, 851988, 655360, 5)
 
 [node name="Wall" type="StaticBody2D" parent="TileMap"]
+position = Vector2(5.49493, -3.75308)
 collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap/Wall"]
 position = Vector2(64.6456, -60.5981)
 polygon = PackedVector2Array(512, 194, 1279, 194, 1279.4, 345.906, 1281, 962, 513, 961, 513, 212, 575, 256, 575, 897, 1218, 897, 1217, 256, 578, 257)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Table2D" parent="." instance=ExtResource("5_1kj1l")]
 position = Vector2(672, 223)
@@ -567,3 +573,86 @@ texture = ExtResource("2_g4cgv")
 
 [node name="Player2D" parent="." instance=ExtResource("3_jtq48")]
 position = Vector2(960, 464)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = SubResource("Theme_s62e6")
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = SubResource("Theme_s62e6")
+theme_override_font_sizes/font_size = 36
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(480, 800)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("7_mvpv3")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="Todo" type="Label" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = SubResource("Theme_s62e6")
+theme_override_font_sizes/font_size = 36
+text = "TO-DO`s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TaskList" type="VBoxContainer" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Task" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer/TaskList" instance=ExtResource("7_u8qcs")]
+layout_mode = 2
+
+[node name="Task2" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer/TaskList" instance=ExtResource("7_u8qcs")]
+layout_mode = 2
+
+[node name="Task3" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer/TaskList" instance=ExtResource("7_u8qcs")]
+layout_mode = 2
+
+[node name="Task4" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer/TaskList" instance=ExtResource("7_u8qcs")]
+layout_mode = 2
