@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdkb81076eell"]
+
+[ext_resource type="Script" path="res://scripts/movel.gd" id="1_h2sas"]
+[ext_resource type="Texture2D" uid="uid://2aojlluinjqo" path="res://assets/sprites/tiles/chair.png" id="2_o6ffv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eqly"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78b5s"]
+size = Vector2(32, 32)
+
+[node name="Movel2D" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_h2sas")
+
+[node name="MovelBody" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_o6ffv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4eqly")
+
+[node name="FaceNorth" type="Area2D" parent="."]
+position = Vector2(0, -48)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FaceNorth"]
+shape = SubResource("RectangleShape2D_78b5s")
+
+[node name="FaceSouth" type="Area2D" parent="."]
+position = Vector2(0, 48)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FaceSouth"]
+shape = SubResource("RectangleShape2D_78b5s")
+
+[node name="FaceEast" type="Area2D" parent="."]
+position = Vector2(48, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FaceEast"]
+shape = SubResource("RectangleShape2D_78b5s")
+
+[node name="FaceWest" type="Area2D" parent="."]
+position = Vector2(-48, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FaceWest"]
+shape = SubResource("RectangleShape2D_78b5s")
+
+[connection signal="body_entered" from="FaceNorth" to="." method="_on_face_north_body_entered"]
+[connection signal="body_exited" from="FaceNorth" to="." method="_on_face_body_exited"]
+[connection signal="body_entered" from="FaceSouth" to="." method="_on_face_south_body_entered"]
+[connection signal="body_exited" from="FaceSouth" to="." method="_on_face_body_exited"]
+[connection signal="body_entered" from="FaceEast" to="." method="_on_face_east_body_entered"]
+[connection signal="body_exited" from="FaceEast" to="." method="_on_face_body_exited"]
+[connection signal="body_entered" from="FaceWest" to="." method="_on_face_west_body_entered"]
+[connection signal="body_exited" from="FaceWest" to="." method="_on_face_body_exited"]

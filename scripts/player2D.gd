@@ -1,7 +1,9 @@
 extends CharacterBody2D
+class_name Player2D
 
 
-const SPEED = 300.0
+const SPEED: float = 300.0
+
 
 func _physics_process(delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("left", "right", "up", "down")

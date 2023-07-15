@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxl6tt2rnhma2"]
+
+[ext_resource type="Script" path="res://scripts/player2D.gd" id="1_ce55y"]
+[ext_resource type="Texture2D" uid="uid://dvoum5f3x3tvn" path="res://assets/sprites/characters/female.png" id="2_rl0u2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8ja1"]
+size = Vector2(64, 64)
+
+[node name="Player2D" type="CharacterBody2D"]
+position = Vector2(900, 578)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_ce55y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f8ja1")
+
+[node name="PlacehoderBody" type="Sprite2D" parent="."]
+texture = ExtResource("2_rl0u2")
