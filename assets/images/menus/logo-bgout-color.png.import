@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1xfmj4coaw2v"
-path="res://.godot/imported/logo-bgout-colored-complete.png-6d43d18c0a555bb3f8e2a15246b4afd8.ctex"
+uid="uid://btv6l3ulmx3dp"
+path="res://.godot/imported/logo-bgout-color.png-36fbc944f9042a93902c180a46605235.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/logo-bgout-colored-complete.png"
-dest_files=["res://.godot/imported/logo-bgout-colored-complete.png-6d43d18c0a555bb3f8e2a15246b4afd8.ctex"]
+source_file="res://assets/images/menus/logo-bgout-color.png"
+dest_files=["res://.godot/imported/logo-bgout-color.png-36fbc944f9042a93902c180a46605235.ctex"]
 
 [params]
 

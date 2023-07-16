@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0bbpp1gbhe5h"]
+[gd_scene load_steps=8 format=3 uid="uid://b0bbpp1gbhe5h"]
 
 [ext_resource type="Script" path="res://scripts/splash_screen.gd" id="1_r31hp"]
-[ext_resource type="Texture2D" uid="uid://b1xfmj4coaw2v" path="res://assets/images/logo-bgout-colored-complete.png" id="2_24i13"]
-[ext_resource type="Texture2D" uid="uid://btv6l3ulmx3dp" path="res://assets/images/logo-bgout-color.png" id="3_tn2em"]
+[ext_resource type="Texture2D" uid="uid://b1xfmj4coaw2v" path="res://assets/images/menus/logo-bgout-colored-complete.png" id="2_d82j8"]
+[ext_resource type="Texture2D" uid="uid://btv6l3ulmx3dp" path="res://assets/images/menus/logo-bgout-color.png" id="3_i4u2p"]
+[ext_resource type="AudioStream" uid="uid://cxiraaeqtxlwv" path="res://assets/audios/sfx/ui/welcome.wav" id="4_qfpvh"]
 
 [sub_resource type="Animation" id="Animation_iqky5"]
 length = 0.001
@@ -40,7 +41,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(230.5, 158.5)]
+"values": [Vector2(650.5, 338.5)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -57,79 +58,68 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("ColorRect/Logo:position")
+tracks/4/path = NodePath("ColorRect/Logo:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(347, 156)]
+"values": [Vector2(0.5, 0.5)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ColorRect/Logo:size")
+tracks/5/path = NodePath("ColorRect/Logo:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(386, 408)]
+"values": [0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("ColorRect/Logo:scale")
+tracks/6/path = NodePath("MarginContainer/Label:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, 0.5)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("ColorRect/Logo:rotation")
+tracks/7/path = NodePath("MarginContainer/Label:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.265591]
+"update": 1,
+"values": [false]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("MarginContainer/Label:modulate")
+tracks/8/path = NodePath("ColorRect/Logo:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("MarginContainer/Label:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [Vector2(-200, 115)]
 }
 
 [sub_resource type="Animation" id="Animation_2ib75"]
 resource_name = "start"
 length = 6.0
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -161,10 +151,10 @@ tracks/2/path = NodePath("ColorRect/RamiresPresentation:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3.7, 3.8, 4.6),
+"times": PackedFloat32Array(3.68, 3.82, 4.61),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-872, 150), Vector2(-881, 128), Vector2(230.5, 44)]
+"values": [Vector2(-478, 410), Vector2(-424, 411), Vector2(650.499, 338.5)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -198,74 +188,62 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("ColorRect/Logo:position")
+tracks/5/path = NodePath("ColorRect/Logo:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.8, 0.9, 1, 1.2, 1.4, 2.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-200, 115), Vector2(-73, 117), Vector2(-200, 115), Vector2(-84, 22), Vector2(103, 135), Vector2(193, 172), Vector2(230, 212), Vector2(347, 41.5)]
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.522727, 0.522727), Vector2(0.6, 0.6), Vector2(0.64, 0.64), Vector2(0.68, 0.68), Vector2(1, 1)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("ColorRect/Logo:size")
+tracks/6/path = NodePath("ColorRect/Logo:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 0.9, 1, 1.2, 1.4, 2.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(386, 408), Vector2(386, 408), Vector2(386, 408), Vector2(386, 408), Vector2(386, 408), Vector2(386, 408), Vector2(386, 408), Vector2(386, 408)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("ColorRect/Logo:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 0.9, 1, 1.2, 1.4, 2.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0.522727, 0.522727), Vector2(0.6, 0.6), Vector2(0.64, 0.64), Vector2(0.68, 0.68), Vector2(1, 1)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("ColorRect/Logo:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.8, 0.9, 1, 1.2, 1.4, 1.6, 1.9, 2.2, 2.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.265591, 0.0, 0.0, 0.218166, -0.460767, 0.312414, -0.272271, 0.113446, -0.136136, 0.0]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("MarginContainer/Label:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MarginContainer/Label:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(4.9, 5.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("MarginContainer/Label:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MarginContainer/Label:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0, 4.9, 5.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ColorRect/Logo:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2.64),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-214, 168), Vector2(767, 336)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_17t35"]
@@ -299,30 +277,29 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -729.5
-offset_top = -381.5
-offset_right = -110.5
-offset_bottom = 21.5
+offset_left = -309.5
+offset_top = -201.5
+offset_right = 309.503
+offset_bottom = 201.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_24i13")
+texture = ExtResource("2_d82j8")
 
 [node name="Logo" type="TextureRect" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -613.0
-offset_top = -384.0
-offset_right = -227.0
-offset_bottom = 24.0
+offset_left = -1160.0
+offset_top = -425.0
+offset_right = -774.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 0.265591
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_tn2em")
+texture = ExtResource("3_i4u2p")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -352,3 +329,4 @@ libraries = {
 }
 
 [node name="Sounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qfpvh")
