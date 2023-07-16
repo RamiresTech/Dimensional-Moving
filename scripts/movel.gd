@@ -54,6 +54,11 @@ var cell: Cell2D = null:
 				"E": value.neighbourhood_east
 			}
 
+func _ready() -> void:
+	var random_spin = randi_range(0, 10)
+
+	for i in range(random_spin):
+		turn_to_right()
 
 func _process(delta: float) -> void:
 	if player_in_face:

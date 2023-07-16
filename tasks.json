@@ -1,0 +1,32 @@
+{
+    "levels": [
+        {
+            "tasks": [
+                [
+                    "poltrona_vermelha",
+                    "C",
+                    5,
+                    "N"
+                ],
+                [
+                    "poltrona_vermelha",
+                    "B",
+                    4,
+                    "S"
+                ],
+                [
+                    "poltrona_vermelha",
+                    "D",
+                    8,
+                    "W"
+                ],
+                [
+                    "poltrona_vermelha",
+                    "G",
+                    5,
+                    "N"
+                ]
+            ]
+        }
+    ]
+}
