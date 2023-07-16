@@ -80,3 +80,7 @@ func task_2d_complete() -> void:
 	check_2d.show()
 	task_2d_is_completed = true
 
+func task_3d_complete() -> void:
+	check_3d.show()
+	task_3d_is_completed = true
+

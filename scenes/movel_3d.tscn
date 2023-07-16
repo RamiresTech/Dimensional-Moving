@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk7j5ytnourca"]
+[gd_scene load_steps=9 format=3 uid="uid://dk7j5ytnourca"]
 
 [ext_resource type="Texture2D" uid="uid://b6s3y746pxtx2" path="res://assets/sprites/GUI/Menu/arrowSilver_right.png" id="1_rlbxy"]
 [ext_resource type="Script" path="res://scripts/movel_3d.gd" id="1_svceb"]
 [ext_resource type="PackedScene" uid="uid://pwekj2hlwvfm" path="res://assets/models/chair.glb" id="2_uwpcw"]
+[ext_resource type="Texture2D" uid="uid://ctus02ptq3v50" path="res://assets/sprites/GUI/Menu/iconCheck_grey.png" id="4_l5h8d"]
 [ext_resource type="FontFile" uid="uid://dgr7ev4mi17td" path="res://fonts/WendyOne-Regular.ttf" id="4_tdulr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kbp8e"]
@@ -28,6 +29,14 @@ texture = ExtResource("1_rlbxy")
 
 [node name="chair" parent="MovelBody" instance=ExtResource("2_uwpcw")]
 transform = Transform3D(-2.1, 0, -1.83588e-07, 0, 2.1, 0, 1.83588e-07, 0, -2.1, 0.193824, 0, -0.1977)
+
+[node name="DoneChecker" type="Sprite3D" parent="MovelBody"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14356, 0)
+visible = false
+modulate = Color(0.4, 1, 0, 1)
+billboard = 1
+texture = ExtResource("4_l5h8d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true

@@ -15,6 +15,7 @@ enum Faces {
 @onready var collision: CollisionShape3D = %CollisionShape3D
 @onready var direction_indication: Sprite3D = %DirectionIndication
 @onready var cell_name_label: Label3D = $CellName
+@onready var done_checker: Sprite3D = %DoneChecker
 
 var tween: Tween
 var player_in_face: String = ""
@@ -142,4 +143,4 @@ func _on_face_body_exited(body: Node) -> void:
 
 func in_place() -> void:
 	is_movable = false
-	movel_body.modulate = Color(0.5, 1.0, 0.5)
+	done_checker.show()

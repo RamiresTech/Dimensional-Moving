@@ -29,9 +29,10 @@ func _ready():
 	set_initial_position_of_moveis_3D()
 
 func _process(delta: float) -> void:
-	var win = check_victory_condition()
+	var finish_2d = check_victory_condition_2D()
+	var finish_3d = check_victory_condition_3D()
 
-	if win:
+	if finish_2d and finish_3d:
 		print("ganhou")
 
 func get_tasks_data_from_json_file() -> Dictionary:
@@ -103,7 +104,7 @@ func fill_tasks_list() -> void:
 	for task in tasks:
 		tasks_list.add_child(task)
 
-func check_victory_condition() -> bool:
+func check_victory_condition_2D() -> bool:
 	var response = true
 	for task in tasks:
 		if task.task_2d_is_completed:
@@ -119,6 +120,27 @@ func check_victory_condition() -> bool:
 			if movel.movel_name == task.movel_name and movel.face_front_by == get_direction_index(direction):
 				movel.in_place()
 				task.task_2d_complete()
+
+		response = false
+
+	return response
+
+func check_victory_condition_3D() -> bool:
+	var response = true
+	for task in tasks:
+		if task.task_3d_is_completed:
+			continue
+		var column = task.column
+		var row = task.row - 1
+		var direction = task.face_direction
+		var cell = table_3d.get_cell_at(row, get_column_index(column))
+
+		if cell and cell.content:
+			var movel = cell.content as Movel3D
+
+			if movel.movel_name == task.movel_name and movel.face_front_by == get_direction_index(direction):
+				movel.in_place()
+				task.task_3d_complete()
 
 		response = false
 
