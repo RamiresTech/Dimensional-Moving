@@ -6,6 +6,7 @@ enum game_modes{
 	GAME3D
 }
 
+
 var game_mode = game_modes.GAME2D
 
 

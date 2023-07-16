@@ -22,20 +22,20 @@ script = ExtResource("1_svceb")
 
 [node name="DirectionIndication" type="Sprite3D" parent="MovelBody"]
 unique_name_in_owner = true
-transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.207853, 0.0511377, -0.646542)
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -0.00147708, 0.0511377, -0.328671)
 visible = false
 texture = ExtResource("1_rlbxy")
 
 [node name="chair" parent="MovelBody" instance=ExtResource("2_uwpcw")]
-transform = Transform3D(-2.1, 0, -1.83588e-07, 0, 2.1, 0, 1.83588e-07, 0, -2.1, 0.40703, 0, -0.469053)
+transform = Transform3D(-2.1, 0, -1.83588e-07, 0, 2.1, 0, 1.83588e-07, 0, -2.1, 0.193824, 0, -0.1977)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0103035, 0.493108, 0.0485635)
 shape = SubResource("BoxShape3D_kbp8e")
 
 [node name="FaceNorth" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.178317, 0, -1.16669)
 collision_layer = 4
 collision_mask = 2
 
@@ -44,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
 shape = SubResource("BoxShape3D_7exnb")
 
 [node name="FaceSouth" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.178318, 0, 0.833312)
 collision_layer = 4
 collision_mask = 2
 
@@ -53,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
 shape = SubResource("BoxShape3D_7exnb")
 
 [node name="FaceWest" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.821682, 0, -0.166688)
 collision_layer = 4
 collision_mask = 2
 
@@ -62,7 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
 shape = SubResource("BoxShape3D_y72pq")
 
 [node name="FaceEast" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.17832, 0, -0.166688)
 collision_layer = 4
 collision_mask = 2
 
@@ -71,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
 shape = SubResource("BoxShape3D_y72pq")
 
 [node name="CellName" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.207666, 1.34482, -0.196129)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00166368, 1.34482, 0.0752242)
 visible = false
 billboard = 1
 text = "A1"

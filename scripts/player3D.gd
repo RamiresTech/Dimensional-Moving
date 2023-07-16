@@ -27,6 +27,9 @@ func _process(delta: float) -> void:
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+	if Input.is_action_just_pressed("toggle_action"):
+		MainPlayer.toggle_action()
+
 func __move(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta

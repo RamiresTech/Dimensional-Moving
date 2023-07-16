@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2ho8kuoruta4"]
+[gd_scene load_steps=32 format=3 uid="uid://d2ho8kuoruta4"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_5qxnk"]
 [ext_resource type="Texture2D" uid="uid://c4kj7s7kyblt6" path="res://assets/sprites/tilesets/tilesheet_complete.png" id="1_bh5e7"]
@@ -13,7 +13,19 @@
 [ext_resource type="PackedScene" uid="uid://b0hvhrwmwpmrm" path="res://scenes/table_3d.tscn" id="9_loyar"]
 [ext_resource type="PackedScene" uid="uid://cn3rque38nr2k" path="res://assets/models/doorway.glb" id="10_7f37i"]
 [ext_resource type="PackedScene" uid="uid://b8gx2eys1smxs" path="res://scenes/player_3d.tscn" id="11_evgxh"]
+[ext_resource type="PackedScene" uid="uid://5no88mt678j8" path="res://assets/models/ceilingFan.glb" id="11_p1tu5"]
 [ext_resource type="Script" path="res://scripts/teste.gd" id="12_a4udp"]
+[ext_resource type="Texture2D" uid="uid://ccs435cq0gsd3" path="res://assets/sprites/GUI/Comands/transparentDark09.png" id="15_kpmk6"]
+[ext_resource type="Texture2D" uid="uid://c2sidryk21kkt" path="res://assets/sprites/GUI/Comands/arrow_clockwise.png" id="16_ibevs"]
+[ext_resource type="Script" path="res://scripts/action_comand_texture.gd" id="17_jcc1g"]
+[ext_resource type="Texture2D" uid="uid://cngrfjgecuiiu" path="res://assets/sprites/GUI/Controls/tile_0235.png" id="17_sxwxu"]
+[ext_resource type="Texture2D" uid="uid://bg6yw26jlvbvf" path="res://assets/sprites/GUI/Controls/tile_0236.png" id="18_cs4k5"]
+[ext_resource type="Texture2D" uid="uid://bfypatmkopetm" path="res://assets/sprites/GUI/Controls/tile_0237.png" id="19_lxv42"]
+[ext_resource type="Texture2D" uid="uid://dr87b2ijveiop" path="res://assets/sprites/GUI/Controls/tile_0077.png" id="20_8xwqj"]
+[ext_resource type="Texture2D" uid="uid://de4jso6jtid10" path="res://assets/sprites/GUI/Controls/tile_0221.png" id="21_tgmff"]
+[ext_resource type="Texture2D" uid="uid://dy06on712pid4" path="res://assets/sprites/GUI/Controls/tile_0222.png" id="22_p5uhx"]
+[ext_resource type="Texture2D" uid="uid://b8l5s351bhtir" path="res://assets/sprites/GUI/Controls/tile_0078.png" id="23_a66dr"]
+[ext_resource type="Texture2D" uid="uid://bq86q1ito0s1r" path="res://assets/sprites/GUI/Comands/arrow_rotate.png" id="24_0h56l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ownff"]
 texture = ExtResource("1_bh5e7")
@@ -607,7 +619,7 @@ scale = Vector2(0.789978, 0.600585)
 environment = SubResource("Environment_un4ch")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level_3D"]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, -0.109225, 6.33354)
 shadow_enabled = true
 
 [node name="Table3D" parent="Level_3D" instance=ExtResource("9_loyar")]
@@ -629,6 +641,16 @@ transform = Transform3D(-4.37114e-07, 0, -1, 0, 1, 0, 10, 0, -4.37114e-08, 9.575
 
 [node name="Wall3D4" parent="Level_3D" instance=ExtResource("9_a21v6")]
 transform = Transform3D(-4.37114e-07, 0, -1, 0, 1, 0, 10, 0, -4.37114e-08, -0.575, 1.5, 4.425)
+
+[node name="Hoftoop" parent="Level_3D" instance=ExtResource("9_a21v6")]
+transform = Transform3D(-4.37114e-07, 3.31, 4.37114e-08, 0, -1.44685e-07, 1, 10, 1.44685e-07, 1.91069e-15, 4.51913, 3.10148, 4.425)
+
+[node name="ceilingFan" parent="Level_3D/Hoftoop" instance=ExtResource("11_p1tu5")]
+transform = Transform3D(-2.18557e-08, -3.01165e-22, 0.5002, 1.51057, -6.60557e-08, 6.60557e-08, 2.18557e-07, 5.002, 9.55725e-15, 0, 0, -0.0981188)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Level_3D/Hoftoop/ceilingFan"]
+transform = Transform3D(0.2, 2.84103e-15, -2.84103e-15, 0, 0.19992, 4.40105e-22, 0, 0, 0.19992, 0, -0.130445, 0)
+light_energy = 2.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -711,3 +733,158 @@ text = "Time"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("12_a4udp")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(480, 400)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(240, 240)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("15_kpmk6")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/TextureRect2"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("16_ibevs")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("17_jcc1g")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("17_sxwxu")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("18_cs4k5")
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 0.588235)
+text = "space"
+horizontal_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("19_lxv42")
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_t5282")
+theme_override_font_sizes/font_size = 48
+text = "/"
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("20_8xwqj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("21_tgmff")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("22_p5uhx")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("5_t5282")
+theme_override_font_sizes/font_size = 48
+text = "/"
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("23_a66dr")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("15_kpmk6")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("24_0h56l")
+stretch_mode = 3

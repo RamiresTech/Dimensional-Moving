@@ -71,17 +71,18 @@ func _process(delta: float) -> void:
 	if player_in_face and is_movable:
 		direction_indication.show()
 		cell_name_label.show()
-		if Input.is_action_just_pressed("push"):
-			push_movel()
+		if Input.is_action_just_pressed("action"):
+			var actions = MainPlayer.actions
+			match MainPlayer.selected_action:
+				actions.PUSH:
+					push_movel()
+				actions.PULL:
+					pull_movel()
+				actions.TURN_TO_LEFT:
+					turn_to_left()
+				actions.TURN_TO_RIGHT:
+					turn_to_right()
 
-		elif Input.is_action_just_pressed("pull"):
-			pull_movel()
-
-		elif Input.is_action_just_pressed("turn_right"):
-			turn_to_right()
-
-		elif Input.is_action_just_pressed("turn_left"):
-			turn_to_left()
 	else:
 		direction_indication.hide()
 		cell_name_label.hide()
