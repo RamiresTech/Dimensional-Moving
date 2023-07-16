@@ -8,6 +8,9 @@ func _ready() -> void:
 
 
 func change() -> void:
-	animator.play("change")
+	if Global.is_2d_game_on():
+		animator.play("2d_to_3d")
+	else:
+		animator.play("3d_to_2d")
 	await get_tree().create_timer(0.5).timeout
 	Global.toggle_view()

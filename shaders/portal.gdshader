@@ -8,9 +8,9 @@ uniform float screen_height;
 
 uniform sampler2D noise_tex;
 
-uniform vec4 brighter_color = vec4(1.0, 0.8, 0.0, 1.0);
-uniform vec4 middle_color = vec4(1.0, 0.56, 0.0, 1.0);
-uniform vec4 darker_color = vec4(0.64, 0.2, 0.05, 1.0);
+uniform vec4 brighter_color : source_color = vec4(1.0, 0.8, 0.0, 1.0);
+uniform vec4 middle_color : source_color  = vec4(1.0, 0.56, 0.0, 1.0);
+uniform vec4 darker_color : source_color  = vec4(0.64, 0.2, 0.05, 1.0);
 
 uniform float spread : hint_range(0.0, 1.0) = 0.5;
 uniform vec2 player_position;
