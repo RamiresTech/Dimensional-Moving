@@ -1,13 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2ho8kuoruta4"]
+[gd_scene load_steps=20 format=3 uid="uid://d2ho8kuoruta4"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_5qxnk"]
 [ext_resource type="Texture2D" uid="uid://c4kj7s7kyblt6" path="res://assets/sprites/tilesets/tilesheet_complete.png" id="1_bh5e7"]
 [ext_resource type="Texture2D" uid="uid://bhqrwexqi3nvm" path="res://assets/images/bg/bg.png" id="2_h3ycm"]
+[ext_resource type="Script" path="res://scripts/level_2D.gd" id="2_outvc"]
 [ext_resource type="PackedScene" uid="uid://dxl6tt2rnhma2" path="res://scenes/player_2d.tscn" id="3_jtq48"]
 [ext_resource type="PackedScene" uid="uid://c5k087o678i4s" path="res://scenes/table_2d.tscn" id="5_1kj1l"]
 [ext_resource type="Theme" uid="uid://cdydlki1v17ye" path="res://resources/default.tres" id="5_t5282"]
 [ext_resource type="Script" path="res://scripts/timer.gd" id="6_alsso"]
 [ext_resource type="Texture2D" uid="uid://cx4l5waf4bpjt" path="res://assets/sprites/GUI/Menu/panel_beigeLight.png" id="7_mvpv3"]
+[ext_resource type="PackedScene" uid="uid://djcjjkrp8bhhf" path="res://scenes/wall_3d.tscn" id="9_a21v6"]
+[ext_resource type="PackedScene" uid="uid://b0hvhrwmwpmrm" path="res://scenes/table_3d.tscn" id="9_loyar"]
+[ext_resource type="PackedScene" uid="uid://cn3rque38nr2k" path="res://assets/models/doorway.glb" id="10_7f37i"]
+[ext_resource type="PackedScene" uid="uid://b8gx2eys1smxs" path="res://scenes/player_3d.tscn" id="11_evgxh"]
+[ext_resource type="Script" path="res://scripts/teste.gd" id="12_a4udp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ownff"]
 texture = ExtResource("1_bh5e7")
@@ -557,6 +563,7 @@ tonemap_mode = 2
 script = ExtResource("1_5qxnk")
 
 [node name="Level_2D" type="Node2D" parent="."]
+script = ExtResource("2_outvc")
 
 [node name="TextureRect" type="TextureRect" parent="Level_2D"]
 modulate = Color(1, 1, 1, 0.513726)
@@ -590,79 +597,6 @@ position = Vector2(672, 223)
 [node name="Player2D" parent="Level_2D" instance=ExtResource("3_jtq48")]
 position = Vector2(960, 464)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Level_2D"]
-
-[node name="MarginContainer" type="MarginContainer" parent="Level_2D/CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 48
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 48
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Level_2D/CanvasLayer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="Label" type="Label" parent="Level_2D/CanvasLayer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme = ExtResource("5_t5282")
-text = "Time"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="Level_2D/CanvasLayer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme = ExtResource("5_t5282")
-theme_override_font_sizes/font_size = 36
-text = "00:00"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("6_alsso")
-
-[node name="TextureRect" type="TextureRect" parent="Level_2D/CanvasLayer/MarginContainer"]
-custom_minimum_size = Vector2(480, 800)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("7_mvpv3")
-expand_mode = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="Level_2D/CanvasLayer/MarginContainer/TextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 36
-theme_override_constants/margin_bottom = 36
-
-[node name="Todo" type="Label" parent="Level_2D/CanvasLayer/MarginContainer/TextureRect/MarginContainer"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme = ExtResource("5_t5282")
-theme_override_font_sizes/font_size = 36
-text = "TO-DO`s"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TaskList" type="VBoxContainer" parent="Level_2D/CanvasLayer/MarginContainer/TextureRect/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 48
-alignment = 1
-
 [node name="Camera2D" type="Camera2D" parent="Level_2D"]
 position = Vector2(960.58, 539.62)
 scale = Vector2(0.789978, 0.600585)
@@ -675,3 +609,105 @@ environment = SubResource("Environment_un4ch")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level_3D"]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
+
+[node name="Table3D" parent="Level_3D" instance=ExtResource("9_loyar")]
+
+[node name="Player3D" parent="Level_3D" instance=ExtResource("11_evgxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37946, 0.944214, 4.55066)
+
+[node name="Wall3D" parent="Level_3D" instance=ExtResource("9_a21v6")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.5, -0.65)
+
+[node name="Wall3D2" parent="Level_3D" instance=ExtResource("9_a21v6")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.5, 9.5)
+
+[node name="doorway" parent="Level_3D/Wall3D2" instance=ExtResource("10_7f37i")]
+transform = Transform3D(0.21, 0, 0, 0, 2.1, 0, 0, 0, 2.1, -0.102559, -1.5, -0.0599546)
+
+[node name="Wall3D3" parent="Level_3D" instance=ExtResource("9_a21v6")]
+transform = Transform3D(-4.37114e-07, 0, -1, 0, 1, 0, 10, 0, -4.37114e-08, 9.575, 1.5, 4.425)
+
+[node name="Wall3D4" parent="Level_3D" instance=ExtResource("9_a21v6")]
+transform = Transform3D(-4.37114e-07, 0, -1, 0, 1, 0, 10, 0, -4.37114e-08, -0.575, 1.5, 4.425)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("5_t5282")
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("5_t5282")
+theme_override_font_sizes/font_size = 36
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_alsso")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(480, 800)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("7_mvpv3")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="Todo" type="Label" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("5_t5282")
+theme_override_font_sizes/font_size = 36
+text = "TO-DO`s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TaskList" type="VBoxContainer" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("5_t5282")
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("12_a4udp")

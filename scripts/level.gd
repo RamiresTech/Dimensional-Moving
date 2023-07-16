@@ -3,13 +3,15 @@ extends Node2D
 class_name LevelUm2D
 
 @onready var table: Table2D = $Level_2D/Table2D
+@onready var table_3d: Table3D = $Level_3D/Table3D
 @onready var task_scene: PackedScene = preload("res://scenes/task.tscn")
 @onready var movel_template: PackedScene = preload("res://scenes/movel2D.tscn")
 @onready var tasks_list: VBoxContainer = %TaskList
 
 const TASKS_FILE_PATH = "res://tasks.json"
 
-var selected_cells: Array
+var selected_cells_2D: Array
+var selected_cells_3D: Array
 var tasks: Array[Task]
 
 func _ready():
@@ -21,18 +23,8 @@ func _ready():
 			get_task_object(task[0], task[1], task[2], task[3])
 		)
 	fill_tasks_list()
-	select_random_cells(tasks.size())
-
-	for index in range(tasks.size()):
-		var cell = selected_cells[index]
-		var task = tasks[index] as Task
-		var movel_instance = task.moveis_2d.get(task.movel_name).instantiate()
-		var movel = movel_instance as Movel2D
-		movel.movel_name = task.movel_name
-		movel.position = cell.position
-		table.add_child(movel_instance)
-		cell.content = movel
-		movel.cell = cell
+	select_random_cells_2D(tasks.size())
+	set_initial_position_of_moveis_2D()
 
 func _process(delta: float) -> void:
 	var win = check_victory_condition()
@@ -46,16 +38,51 @@ func get_tasks_data_from_json_file() -> Dictionary:
 	file.close()
 	return JSON.parse_string(json_string)
 
-func select_random_cells(amount_of_cells_to_select: int) -> void:
-	selected_cells = []
+func select_random_cells_2D(amount_of_cells_to_select: int) -> void:
+	selected_cells_2D = []
 
-	while selected_cells.size() < amount_of_cells_to_select:
+	while selected_cells_2D.size() < amount_of_cells_to_select:
 		var row = randi_range(0, 9)
 		var col = randi_range(0, 9)
 		var cell = table.get_cell_at(row, col)
 
-		if cell and !selected_cells.has(cell):
-			selected_cells.append(cell)
+		if cell and !selected_cells_2D.has(cell):
+			selected_cells_2D.append(cell)
+
+func select_random_cells_3D(amount_of_cells_to_select: int) -> void:
+	selected_cells_3D = []
+
+	while selected_cells_3D.size() < amount_of_cells_to_select:
+		var row = randi_range(0, 9)
+		var col = randi_range(0, 9)
+		var cell = table_3d.get_cell_at(row, col)
+
+		if cell and !selected_cells_3D.has(cell):
+			selected_cells_3D.append(cell)
+
+func set_initial_position_of_moveis_2D() -> void:
+	for index in range(tasks.size()):
+		var cell = selected_cells_2D[index]
+		var task = tasks[index] as Task
+		var movel_instance = task.moveis_2d.get(task.movel_name).instantiate()
+		var movel = movel_instance as Movel2D
+		movel.movel_name = task.movel_name
+		movel.position = cell.position
+		table.add_child(movel_instance)
+		cell.content = movel
+		movel.cell = cell
+
+func set_initial_position_of_moveis_3D() -> void:
+	for index in range(tasks.size()):
+		var cell = selected_cells_3D[index]
+		var task = tasks[index] as Task
+		var movel_instance = task.moveis_3d.get(task.movel_name).instantiate()
+		var movel = movel_instance as Movel3D
+		movel.movel_name = task.movel_name
+		movel.translation = cell.translation
+		table_3d.add_child(movel_instance)
+		cell.content = movel
+		movel.cell = cell
 
 func get_random_tasks(tasks_data: Dictionary) -> Array:
 	var levels = tasks_data["levels"]

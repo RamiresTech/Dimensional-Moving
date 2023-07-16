@@ -40,7 +40,7 @@ var LEFT_TURN_TO: Dictionary = {
 	faces.EAST: faces.NORTH,
 }
 
-var cell: Cell2D = null:
+var cell: Cell = null:
 	set(value):
 		cell = value
 		cell_name_label.text = cell.cell_name
@@ -87,13 +87,13 @@ func _process(delta: float) -> void:
 		cell_name_label.hide()
 
 func push_movel() -> void:
-	var new_cell: Cell2D = CELL_TO_PUSH.get(player_in_face)
+	var new_cell: Cell = CELL_TO_PUSH.get(player_in_face)
 	if new_cell:
 		chance_cell(new_cell)
 		move_to_cell()
 
 func pull_movel() -> void:
-	var new_cell: Cell2D = CELL_TO_PULL.get(player_in_face)
+	var new_cell: Cell = CELL_TO_PULL.get(player_in_face)
 	if new_cell:
 		chance_cell(new_cell)
 		move_to_cell()
@@ -108,7 +108,7 @@ func turn_to_left() -> void:
 	movel_body.rotate(deg_to_rad(-90))
 	collision.rotate(deg_to_rad(-90))
 
-func chance_cell(new_cell: Cell2D) -> void:
+func chance_cell(new_cell: Cell) -> void:
 	if not new_cell.content:
 		cell.content = null
 		new_cell.content = self

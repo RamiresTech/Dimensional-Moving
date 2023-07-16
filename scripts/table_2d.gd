@@ -16,7 +16,7 @@ func _ready():
 		var row_cells = []
 		for col in range(10):
 			var cell_instance = cell_template.instantiate()
-			var cell = cell_instance as Cell2D
+			var cell = cell_instance as Cell
 			cell.position = Vector2(col * cell_size, row * cell_size)
 			cell.cell_name = get_cell_name(row, col)
 			cell.name = get_cell_name(row, col)
@@ -35,7 +35,7 @@ func _ready():
 			row_cells.append(cell)
 		cells.append(row_cells)
 
-func get_cell_at(row: int, col: int) -> Cell2D:
+func get_cell_at(row: int, col: int) -> Cell:
 	if row >= 0 and row < 10 and col >= 0 and col < 10:
 		return cells[row][col]
 	else:

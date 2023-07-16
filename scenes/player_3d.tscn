@@ -4,14 +4,14 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_21rq2"]
 radius = 0.3
-height = 1.8
+height = 1.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pks60"]
 albedo_color = Color(0.258824, 0.819608, 0.807843, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4t348"]
 radius = 0.31
-height = 1.8
+height = 1.2
 
 [sub_resource type="SphereMesh" id="SphereMesh_b6cog"]
 radius = 0.2
@@ -23,7 +23,7 @@ metallic = 0.59
 
 [node name="Player3D" type="CharacterBody3D"]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_6oqry")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -35,7 +35,7 @@ shape = SubResource("CapsuleShape3D_4t348")
 
 [node name="Head" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598381, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.299081, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.175423)

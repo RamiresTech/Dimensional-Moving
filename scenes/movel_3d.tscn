@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk7j5ytnourca"]
+
+[ext_resource type="Texture2D" uid="uid://b6s3y746pxtx2" path="res://assets/sprites/GUI/Menu/arrowSilver_right.png" id="1_rlbxy"]
+[ext_resource type="PackedScene" uid="uid://pwekj2hlwvfm" path="res://assets/models/chair.glb" id="2_uwpcw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kbp8e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7exnb"]
+size = Vector3(0.5, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y72pq"]
+size = Vector3(1, 1, 0.5)
+
+[node name="Movel3D" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="MovelBody" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="MovelBody"]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0.207853, 0.01, 0.121)
+visible = false
+texture = ExtResource("1_rlbxy")
+
+[node name="chair" parent="MovelBody" instance=ExtResource("2_uwpcw")]
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
+shape = SubResource("BoxShape3D_kbp8e")
+
+[node name="FaceNorth" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FaceNorth"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
+shape = SubResource("BoxShape3D_7exnb")
+
+[node name="FaceSouth" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FaceSouth"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
+shape = SubResource("BoxShape3D_7exnb")
+
+[node name="FaceWest" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FaceWest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
+shape = SubResource("BoxShape3D_y72pq")
+
+[node name="FaceEast" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FaceEast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
+shape = SubResource("BoxShape3D_y72pq")

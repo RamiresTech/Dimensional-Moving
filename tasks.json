@@ -5,26 +5,26 @@
                 [
                     "mesa_de_centro",
                     "C",
-                    5,
-                    "N"
+                    4,
+                    "E"
                 ],
                 [
                     "poltrona_vermelha",
-                    "B",
+                    "E",
                     4,
-                    "S"
-                ],
-                [
-                    "cadeira",
-                    "D",
-                    8,
                     "W"
                 ],
                 [
-                    "sofa_vermelho",
+                    "cadeira",
                     "G",
-                    5,
+                    8,
                     "N"
+                ],
+                [
+                    "sofa_vermelho",
+                    "C",
+                    2,
+                    "S"
                 ]
             ]
         }

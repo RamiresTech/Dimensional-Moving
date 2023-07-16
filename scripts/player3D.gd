@@ -14,6 +14,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if Global.is_2d_game_on(): return
 	__move(delta)
 
 
@@ -43,7 +44,7 @@ func __move(delta: float) -> void:
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and not mouse_is_visible:
+	if event is InputEventMouseMotion and not mouse_is_visible and not Global.is_2d_game_on():
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity))
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-45), deg_to_rad(90))

@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqtj184fed1hf"]
 
-[ext_resource type="Texture2D" uid="uid://0xrvqkwh3at2" path="res://assets/sprites/tiles/floor.png" id="1_0ui6k"]
-[ext_resource type="Script" path="res://scripts/cell_2d.gd" id="1_kr684"]
+[ext_resource type="Script" path="res://scripts/cell.gd" id="1_8pu12"]
+[ext_resource type="Texture2D" uid="uid://cjfefbmu1sjia" path="res://assets/sprites/tiles/tile_96.png" id="2_85env"]
 
 [node name="Cell2D" type="Node2D"]
-script = ExtResource("1_kr684")
+script = ExtResource("1_8pu12")
 
 [node name="Floor" type="Sprite2D" parent="."]
-texture = ExtResource("1_0ui6k")
+modulate = Color(0.933333, 0.94902, 0.933333, 1)
+texture = ExtResource("2_85env")
