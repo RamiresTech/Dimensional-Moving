@@ -28,10 +28,17 @@ func _ready():
 		var task = tasks[index] as Task
 		var movel_instance = task.moveis_2d.get(task.movel_name).instantiate()
 		var movel = movel_instance as Movel2D
+		movel.movel_name = task.movel_name
 		movel.position = cell.position
 		table.add_child(movel_instance)
 		cell.content = movel
 		movel.cell = cell
+
+func _process(delta: float) -> void:
+	var win = check_victory_condition()
+
+	if win:
+		print("ganhou")
 
 func get_tasks_data_from_json_file() -> Dictionary:
 	var file = FileAccess.open(TASKS_FILE_PATH, FileAccess.READ)
@@ -66,3 +73,41 @@ func get_task_object(movel_name: String, column: String, row: int, direction: St
 func fill_tasks_list() -> void:
 	for task in tasks:
 		tasks_list.add_child(task)
+
+func check_victory_condition() -> bool:
+	var response = true
+	for task in tasks:
+		if task.task_2d_is_completed:
+			continue
+		var column = task.column
+		var row = task.row - 1
+		var direction = task.face_direction
+		var cell = table.get_cell_at(row, get_column_index(column))
+
+		if cell and cell.content:
+			var movel = cell.content as Movel2D
+
+			if movel.movel_name == task.movel_name and movel.face_front_by == get_direction_index(direction):
+				movel.in_place()
+				task.task_2d_complete()
+
+		response = false
+
+	return response
+
+func get_column_index(column: String) -> int:
+	var column_letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+	return column_letters.find(column)
+
+func get_direction_index(direction: String) -> int:
+	match direction:
+		"N":
+			return Movel2D.faces.NORTH
+		"E":
+			return Movel2D.faces.EAST
+		"S":
+			return Movel2D.faces.SOUTH
+		"W":
+			return Movel2D.faces.WEST
+
+	return -1

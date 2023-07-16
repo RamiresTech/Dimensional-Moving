@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvoum5f3x3tvn" path="res://assets/sprites/characters/female.png" id="2_rl0u2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8ja1"]
-size = Vector2(64, 64)
+size = Vector2(60, 60)
 
 [node name="Player2D" type="CharacterBody2D"]
 position = Vector2(900, 578)

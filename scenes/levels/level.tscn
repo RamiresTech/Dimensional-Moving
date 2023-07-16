@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_5qxnk"]
 [ext_resource type="Texture2D" uid="uid://c4kj7s7kyblt6" path="res://assets/sprites/tilesets/tilesheet_complete.png" id="1_bh5e7"]
-[ext_resource type="Texture2D" uid="uid://rer87qkuee7s" path="res://icon.svg" id="2_g4cgv"]
+[ext_resource type="Texture2D" uid="uid://bhqrwexqi3nvm" path="res://assets/images/bg/bg.png" id="2_h3ycm"]
 [ext_resource type="PackedScene" uid="uid://dxl6tt2rnhma2" path="res://scenes/player_2d.tscn" id="3_jtq48"]
 [ext_resource type="PackedScene" uid="uid://c5k087o678i4s" path="res://scenes/table_2d.tscn" id="5_1kj1l"]
-[ext_resource type="FontFile" uid="uid://dgr7ev4mi17td" path="res://fonts/WendyOne-Regular.ttf" id="6_4rvtw"]
+[ext_resource type="Theme" uid="uid://cdydlki1v17ye" path="res://resources/default.tres" id="5_t5282"]
+[ext_resource type="Script" path="res://scripts/timer.gd" id="6_alsso"]
 [ext_resource type="Texture2D" uid="uid://cx4l5waf4bpjt" path="res://assets/sprites/GUI/Menu/panel_beigeLight.png" id="7_mvpv3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ownff"]
@@ -540,10 +541,6 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_ownff")
 
-[sub_resource type="Theme" id="Theme_s62e6"]
-default_font = ExtResource("6_4rvtw")
-default_font_size = 24
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2xmiu"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -561,6 +558,18 @@ script = ExtResource("1_5qxnk")
 
 [node name="Level_2D" type="Node2D" parent="."]
 
+[node name="TextureRect" type="TextureRect" parent="Level_2D"]
+modulate = Color(1, 1, 1, 0.513726)
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_h3ycm")
+
 [node name="TileMap" type="TileMap" parent="Level_2D"]
 tile_set = SubResource("TileSet_gp14p")
 cell_quadrant_size = 64
@@ -577,12 +586,6 @@ polygon = PackedVector2Array(512, 194, 1279, 194, 1279.4, 345.906, 1281, 962, 51
 
 [node name="Table2D" parent="Level_2D" instance=ExtResource("5_1kj1l")]
 position = Vector2(672, 223)
-
-[node name="Portal" type="Sprite2D" parent="Level_2D"]
-modulate = Color(0.168627, 0.92549, 0.576471, 0.796078)
-position = Vector2(1240, 792)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_g4cgv")
 
 [node name="Player2D" parent="Level_2D" instance=ExtResource("3_jtq48")]
 position = Vector2(960, 464)
@@ -608,7 +611,7 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="Level_2D/CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme = SubResource("Theme_s62e6")
+theme = ExtResource("5_t5282")
 text = "Time"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -616,11 +619,12 @@ vertical_alignment = 1
 [node name="Label2" type="Label" parent="Level_2D/CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-theme = SubResource("Theme_s62e6")
+theme = ExtResource("5_t5282")
 theme_override_font_sizes/font_size = 36
 text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("6_alsso")
 
 [node name="TextureRect" type="TextureRect" parent="Level_2D/CanvasLayer/MarginContainer"]
 custom_minimum_size = Vector2(480, 800)
@@ -645,7 +649,7 @@ modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme = SubResource("Theme_s62e6")
+theme = ExtResource("5_t5282")
 theme_override_font_sizes/font_size = 36
 text = "TO-DO`s"
 horizontal_alignment = 1

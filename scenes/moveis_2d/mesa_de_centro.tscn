@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhu0qkvkpcotc"]
+
+[ext_resource type="PackedScene" uid="uid://cdkb81076eell" path="res://scenes/movel2D.tscn" id="1_hba7f"]
+[ext_resource type="Texture2D" uid="uid://ccv8scvxn0f0h" path="res://assets/sprites/tiles/tile_479.png" id="2_ouohc"]
+
+[node name="MesaDeCentro" instance=ExtResource("1_hba7f")]
+
+[node name="MovelBody" parent="." index="0"]
+texture = ExtResource("2_ouohc")

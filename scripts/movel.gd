@@ -9,8 +9,12 @@ enum faces{
 	WEST
 	}
 
-@onready var movel_body: Sprite2D = %MovelBody
 @export var movel_name: String
+
+@onready var movel_body: Sprite2D = %MovelBody
+@onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var direction_indication: Sprite2D = %DirectionIndication
+@onready var cell_name_label: Label = %CellName
 
 var tween: Tween
 var player_in_face: String = ""
@@ -39,6 +43,7 @@ var LEFT_TURN_TO: Dictionary = {
 var cell: Cell2D = null:
 	set(value):
 		cell = value
+		cell_name_label.text = cell.cell_name
 		if value:
 			CELL_TO_PUSH = {
 				"N": value.neighbourhood_south,
@@ -54,6 +59,8 @@ var cell: Cell2D = null:
 				"E": value.neighbourhood_east
 			}
 
+var is_movable: bool = true
+
 func _ready() -> void:
 	var random_spin = randi_range(0, 10)
 
@@ -61,7 +68,9 @@ func _ready() -> void:
 		turn_to_right()
 
 func _process(delta: float) -> void:
-	if player_in_face:
+	if player_in_face and is_movable:
+		direction_indication.show()
+		cell_name_label.show()
 		if Input.is_action_just_pressed("push"):
 			push_movel()
 
@@ -73,6 +82,9 @@ func _process(delta: float) -> void:
 
 		elif Input.is_action_just_pressed("turn_left"):
 			turn_to_left()
+	else:
+		direction_indication.hide()
+		cell_name_label.hide()
 
 func push_movel() -> void:
 	var new_cell: Cell2D = CELL_TO_PUSH.get(player_in_face)
@@ -89,16 +101,18 @@ func pull_movel() -> void:
 func turn_to_right() -> void:
 	face_front_by = RIGHT_TURN_TO.get(face_front_by)
 	movel_body.rotate(deg_to_rad(90))
+	collision.rotate(deg_to_rad(90))
 
 func turn_to_left() -> void:
-	face_front_by = RIGHT_TURN_TO.get(face_front_by)
+	face_front_by = LEFT_TURN_TO.get(face_front_by)
 	movel_body.rotate(deg_to_rad(-90))
+	collision.rotate(deg_to_rad(-90))
 
 func chance_cell(new_cell: Cell2D) -> void:
 	if not new_cell.content:
 		cell.content = null
+		new_cell.content = self
 		cell = new_cell
-		cell.content = self
 
 func move_to_cell() -> void:
 	tween = create_tween()
@@ -130,3 +144,7 @@ func _on_face_west_body_entered(body: Node2D) -> void:
 func _on_face_body_exited(body: Node2D) -> void:
 	if body is Player2D:
 		player_in_face = ""
+
+func in_place() -> void:
+	is_movable = false
+	movel_body.modulate = Color.CHARTREUSE

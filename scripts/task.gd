@@ -5,8 +5,8 @@ class_name Task
 @onready var direction_image: TextureRect = %DirectionImage
 @onready var column_label: Label = %ColumnLabel
 @onready var row_label: Label = %RowLabel
-@onready var check_2d: CheckBox = %"2DCheckBox"
-@onready var check_3d: CheckBox = %"3DCheckBox"
+@onready var check_2d: TextureRect = %"2DMarkCheck"
+@onready var check_3d: TextureRect = %"3DMarkCheck"
 
 var directions: Dictionary = {
 	"N": preload("res://assets/sprites/GUI/Directions/arrowUp.png"),
@@ -17,15 +17,24 @@ var directions: Dictionary = {
 
 var moveis_images: Dictionary = {
 	"poltrona_vermelha": preload("res://assets/sprites/moveis_images/loungeChair.png"),
+	"cadeira": preload("res://assets/sprites/moveis_images/bench.png"),
+	"sofa_vermelho": preload("res://assets/sprites/moveis_images/loungeSofa.png"),
+	"mesa_de_centro": preload("res://assets/sprites/moveis_images/tableRound.png"),
 }
 
 var moveis_2d: Dictionary = {
 	"poltrona_vermelha": preload("res://scenes/poltrona_vermelha.tscn"),
+	"cadeira": preload("res://scenes/moveis_2d/cadeira.tscn"),
+	"sofa_vermelho": preload("res://scenes/moveis_2d/sofa_vermelho.tscn"),
+	"mesa_de_centro": preload("res://scenes/moveis_2d/mesa_de_centro.tscn"),
 
 }
 
 var moveis_3d: Dictionary = {
 	"poltrona_vermelha": preload("res://scenes/poltrona_vermelha.tscn"),
+	"cadeira": preload("res://scenes/moveis_2d/cadeira.tscn"),
+	"sofa_vermelho": preload("res://scenes/moveis_2d/sofa_vermelho.tscn"),
+	"mesa_de_centro": preload("res://scenes/moveis_2d/mesa_de_centro.tscn"),
 
 }
 
@@ -66,4 +75,8 @@ func get_random_number() -> int:
 
 func get_random_letter() -> String:
 	return column_letters[randi() % 10]
+
+func task_2d_complete() -> void:
+	check_2d.show()
+	task_2d_is_completed = true
 
