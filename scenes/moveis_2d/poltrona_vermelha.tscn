@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsiyff2v2485f"]
+
+[ext_resource type="Script" path="res://scripts/movel.gd" id="1_tmhcb"]
+[ext_resource type="Texture2D" uid="uid://2aojlluinjqo" path="res://assets/sprites/tiles/chair.png" id="2_o22xq"]
+[ext_resource type="Texture2D" uid="uid://b6s3y746pxtx2" path="res://assets/sprites/GUI/Menu/arrowSilver_right.png" id="3_50rqy"]
+[ext_resource type="Theme" uid="uid://cdydlki1v17ye" path="res://resources/default.tres" id="4_eyg8e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eqly"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78b5s"]
+size = Vector2(32, 32)
+
+[node name="PoltronaVermelha" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_tmhcb")
+
+[node name="MovelBody" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0.721569, 0.721569, 1)
+texture = ExtResource("2_o22xq")
+
+[node name="DirectionIndication" type="Sprite2D" parent="MovelBody"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -41)
+rotation = 4.71239
+texture = ExtResource("3_50rqy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_4eqly")
+
+[node name="FaceNorth" type="Area2D" parent="."]
+position = Vector2(0, -48)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FaceNorth"]
+shape = SubResource("RectangleShape2D_78b5s")
+
+[node name="FaceSouth" type="Area2D" parent="."]
+position = Vector2(0, 48)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FaceSouth"]
+shape = SubResource("RectangleShape2D_78b5s")
+
+[node name="FaceEast" type="Area2D" parent="."]
+position = Vector2(48, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FaceEast"]
+shape = SubResource("RectangleShape2D_78b5s")
+
+[node name="FaceWest" type="Area2D" parent="."]
+position = Vector2(-48, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FaceWest"]
+shape = SubResource("RectangleShape2D_78b5s")
+
+[node name="CellName" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -19.0
+offset_top = 6.0
+offset_right = 21.0
+offset_bottom = 32.0
+theme = ExtResource("4_eyg8e")
+text = "A1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="FaceNorth" to="." method="_on_face_north_body_entered" flags=18]
+[connection signal="body_exited" from="FaceNorth" to="." method="_on_face_body_exited" flags=18]
+[connection signal="body_entered" from="FaceSouth" to="." method="_on_face_south_body_entered" flags=18]
+[connection signal="body_exited" from="FaceSouth" to="." method="_on_face_body_exited" flags=18]
+[connection signal="body_entered" from="FaceEast" to="." method="_on_face_east_body_entered" flags=18]
+[connection signal="body_exited" from="FaceEast" to="." method="_on_face_body_exited" flags=18]
+[connection signal="body_entered" from="FaceWest" to="." method="_on_face_west_body_entered" flags=18]
+[connection signal="body_exited" from="FaceWest" to="." method="_on_face_body_exited" flags=18]

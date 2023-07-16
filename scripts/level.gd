@@ -2,11 +2,17 @@ extends Node2D
 
 class_name LevelUm2D
 
+@export var limit_time: int = 5
+
 @onready var table: Table2D = $Level_2D/Table2D
 @onready var table_3d: Table3D = $Level_3D/Table3D
 @onready var task_scene: PackedScene = preload("res://scenes/task.tscn")
 @onready var movel_template: PackedScene = preload("res://scenes/movel2D.tscn")
 @onready var tasks_list: VBoxContainer = %TaskList
+@onready var cover_screen: TextureRect = %Cover
+@onready var victory_screen: MarginContainer = %VictoryScreen
+@onready var loose_screen: MarginContainer = %LooseScreen
+@onready var contdown: CountDown = %Countdown
 
 const TASKS_FILE_PATH = "res://tasks.json"
 
@@ -15,6 +21,20 @@ var selected_cells_3D: Array
 var tasks: Array[Task]
 
 func _ready():
+	start_game()
+
+func _process(delta: float) -> void:
+	var finish_2d = check_victory_condition_2D()
+	var finish_3d = check_victory_condition_3D()
+
+	if finish_2d and finish_3d:
+		await get_tree().create_timer(0.5).timeout
+		cover_screen.show()
+		victory_screen.show()
+
+func start_game() -> void:
+	Global.game_mode = Global.game_modes.GAME2D
+	contdown.countdown_minutes = limit_time
 	var tasks_data = get_tasks_data_from_json_file()
 	var tasks_informations = get_random_tasks(tasks_data)
 
@@ -27,13 +47,8 @@ func _ready():
 	set_initial_position_of_moveis_2D()
 	select_random_cells_3D(tasks.size())
 	set_initial_position_of_moveis_3D()
+	contdown.start_countdown()
 
-func _process(delta: float) -> void:
-	var finish_2d = check_victory_condition_2D()
-	var finish_3d = check_victory_condition_3D()
-
-	if finish_2d and finish_3d:
-		print("ganhou")
 
 func get_tasks_data_from_json_file() -> Dictionary:
 	var file = FileAccess.open(TASKS_FILE_PATH, FileAccess.READ)
@@ -162,3 +177,13 @@ func get_direction_index(direction: String) -> int:
 			return Movel2D.faces.WEST
 
 	return -1
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_countdown_time_over() -> void:
+	await get_tree().create_timer(0.5).timeout
+	cover_screen.show()
+	loose_screen.show()

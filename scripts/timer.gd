@@ -1,7 +1,10 @@
 extends Label
+class_name CountDown
 
 @export var countdown_minutes: int = 5
 @export var countdown_seconds: int = 0
+
+signal time_over
 
 func _ready():
 	var total_seconds = countdown_minutes * 60 + countdown_seconds
@@ -23,3 +26,6 @@ func start_countdown() -> void:
 		total_seconds -= 1
 
 	text = "Fim!"
+	modulate = Color.RED
+	time_over.emit()
+

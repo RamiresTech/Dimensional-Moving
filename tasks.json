@@ -3,13 +3,13 @@
         {
             "tasks": [
                 [
-                    "cadeira",
+                    "mesa_de_centro",
                     "C",
                     4,
                     "E"
                 ],
                 [
-                    "cadeira",
+                    "poltrona_vermelha",
                     "E",
                     4,
                     "W"
@@ -21,7 +21,7 @@
                     "N"
                 ],
                 [
-                    "cadeira",
+                    "sofa_vermelho",
                     "C",
                     2,
                     "S"

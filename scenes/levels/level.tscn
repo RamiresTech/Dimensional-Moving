@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://d2ho8kuoruta4"]
+[gd_scene load_steps=47 format=3 uid="uid://d2ho8kuoruta4"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_5qxnk"]
 [ext_resource type="Texture2D" uid="uid://c4kj7s7kyblt6" path="res://assets/sprites/tilesets/tilesheet_complete.png" id="1_bh5e7"]
 [ext_resource type="Texture2D" uid="uid://bhqrwexqi3nvm" path="res://assets/images/bg/bg.png" id="2_h3ycm"]
 [ext_resource type="Script" path="res://scripts/level_2D.gd" id="2_outvc"]
+[ext_resource type="Shader" path="res://shaders/starfield_shader_v5.gdshader" id="3_7uap2"]
 [ext_resource type="PackedScene" uid="uid://dxl6tt2rnhma2" path="res://scenes/player_2d.tscn" id="3_jtq48"]
 [ext_resource type="PackedScene" uid="uid://c5k087o678i4s" path="res://scenes/table_2d.tscn" id="5_1kj1l"]
 [ext_resource type="Theme" uid="uid://cdydlki1v17ye" path="res://resources/default.tres" id="5_t5282"]
@@ -18,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://ccs435cq0gsd3" path="res://assets/sprites/GUI/Comands/transparentDark09.png" id="15_kpmk6"]
 [ext_resource type="Texture2D" uid="uid://c2sidryk21kkt" path="res://assets/sprites/GUI/Comands/arrow_clockwise.png" id="16_ibevs"]
 [ext_resource type="Script" path="res://scripts/action_comand_texture.gd" id="17_jcc1g"]
+[ext_resource type="Texture2D" uid="uid://c5h064thnur0a" path="res://assets/sprites/GUI/Controls/tile_0158.png" id="17_kla6l"]
 [ext_resource type="Texture2D" uid="uid://cngrfjgecuiiu" path="res://assets/sprites/GUI/Controls/tile_0235.png" id="17_sxwxu"]
 [ext_resource type="Texture2D" uid="uid://bg6yw26jlvbvf" path="res://assets/sprites/GUI/Controls/tile_0236.png" id="18_cs4k5"]
 [ext_resource type="Texture2D" uid="uid://bfypatmkopetm" path="res://assets/sprites/GUI/Controls/tile_0237.png" id="19_lxv42"]
@@ -26,6 +28,27 @@
 [ext_resource type="Texture2D" uid="uid://dy06on712pid4" path="res://assets/sprites/GUI/Controls/tile_0222.png" id="22_p5uhx"]
 [ext_resource type="Texture2D" uid="uid://b8l5s351bhtir" path="res://assets/sprites/GUI/Controls/tile_0078.png" id="23_a66dr"]
 [ext_resource type="Texture2D" uid="uid://bq86q1ito0s1r" path="res://assets/sprites/GUI/Comands/arrow_rotate.png" id="24_0h56l"]
+[ext_resource type="Script" path="res://scripts/action_label.gd" id="28_w0l22"]
+[ext_resource type="Texture2D" uid="uid://t6kaw1ieyp1a" path="res://assets/sprites/GUI/Menu/panel_beige.png" id="29_w1xa8"]
+[ext_resource type="Shader" path="res://shaders/portal.gdshader" id="30_a0vxt"]
+[ext_resource type="Texture2D" uid="uid://7ur3mhul8b21" path="res://assets/sprites/GUI/Menu/buttonRound_grey.png" id="30_cmr3k"]
+[ext_resource type="Texture2D" uid="uid://uucakbttmq5l" path="res://assets/sprites/GUI/Menu/buttonRound_brown.png" id="31_k2x1d"]
+[ext_resource type="Script" path="res://scripts/portal.gd" id="31_wg0bi"]
+[ext_resource type="Texture2D" uid="uid://cjtinphomhc16" path="res://assets/sprites/GUI/Comands/arrow_counterclockwise.png" id="32_0wsys"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpu1s"]
+shader = ExtResource("3_7uap2")
+shader_parameter/dimensions = Vector2(1024, 600)
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.5
+shader_parameter/small_stars_near_size = 1.0
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.5
+shader_parameter/large_stars_near_size = 1.0
+shader_parameter/far_stars_color = Color(0.5, 0, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 0.05
+shader_parameter/additional_scroll_speed = 0.05
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ownff"]
 texture = ExtResource("1_bh5e7")
@@ -559,26 +582,129 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_ownff")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2xmiu"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5yojp"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_bcjkq"]
-sky_material = SubResource("ProceduralSkyMaterial_2xmiu")
+[sub_resource type="Sky" id="Sky_3x2rd"]
+sky_material = SubResource("ProceduralSkyMaterial_5yojp")
 
-[sub_resource type="Environment" id="Environment_un4ch"]
+[sub_resource type="Environment" id="Environment_b036n"]
 background_mode = 2
-sky = SubResource("Sky_bcjkq")
+sky = SubResource("Sky_3x2rd")
 tonemap_mode = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mq4pu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2khv8"]
+shader = ExtResource("30_a0vxt")
+shader_parameter/size = 6.0
+shader_parameter/width = 6.0
+shader_parameter/screen_width = 1920.0
+shader_parameter/screen_height = 1080.0
+shader_parameter/brighter_color = Vector4(255, 255, 255, 1)
+shader_parameter/middle_color = Vector4(0, 255, 255, 1)
+shader_parameter/darker_color = Vector4(0, 255, 255, 1)
+shader_parameter/spread = 0.0
+shader_parameter/player_position = Vector2(0.49, 0.44)
+shader_parameter/pixel_amount = 90
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_mq4pu")
+
+[sub_resource type="Animation" id="Animation_t4ch6"]
+resource_name = "change"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.69, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [6.0, 6.0, 3.33333, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/spread")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.42),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_r1g4r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material:shader_parameter/spread")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7yvgl"]
+_data = {
+"RESET": SubResource("Animation_r1g4r"),
+"change": SubResource("Animation_t4ch6")
+}
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_5qxnk")
+limit_time = 3
 
 [node name="Level_2D" type="Node2D" parent="."]
 script = ExtResource("2_outvc")
 
 [node name="TextureRect" type="TextureRect" parent="Level_2D"]
-modulate = Color(1, 1, 1, 0.513726)
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_lpu1s")
 custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
@@ -615,12 +741,12 @@ scale = Vector2(0.789978, 0.600585)
 
 [node name="Level_3D" type="Node3D" parent="."]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Level_3D"]
-environment = SubResource("Environment_un4ch")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level_3D"]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, -0.109225, 6.33354)
 shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level_3D"]
+environment = SubResource("Environment_b036n")
 
 [node name="Table3D" parent="Level_3D" instance=ExtResource("9_loyar")]
 
@@ -654,7 +780,7 @@ light_energy = 2.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="HUD" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -665,20 +791,21 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 48
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("5_t5282")
-text = "Time"
+text = "Tempo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+[node name="Countdown" type="Label" parent="CanvasLayer/HUD/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("5_t5282")
@@ -687,16 +814,17 @@ text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_alsso")
+countdown_minutes = 3
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer"]
-custom_minimum_size = Vector2(480, 800)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD"]
+custom_minimum_size = Vector2(480, 820)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("7_mvpv3")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/TextureRect"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -706,18 +834,18 @@ grow_vertical = 2
 theme_override_constants/margin_top = 36
 theme_override_constants/margin_bottom = 36
 
-[node name="Todo" type="Label" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer"]
+[node name="Todo" type="Label" parent="CanvasLayer/HUD/TextureRect/MarginContainer"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme = ExtResource("5_t5282")
 theme_override_font_sizes/font_size = 36
-text = "TO-DO`s"
+text = "TAREFAS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TaskList" type="VBoxContainer" parent="CanvasLayer/MarginContainer/TextureRect/MarginContainer"]
+[node name="TaskList" type="VBoxContainer" parent="CanvasLayer/HUD/TextureRect/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -725,16 +853,31 @@ size_flags_vertical = 4
 theme_override_constants/separation = 48
 alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("5_t5282")
-text = "Time"
+text = "Dimensão"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("12_a4udp")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/VBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_kla6l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD"]
 custom_minimum_size = Vector2(480, 400)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -744,7 +887,7 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer"]
 custom_minimum_size = Vector2(240, 240)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -752,7 +895,7 @@ size_flags_vertical = 4
 texture = ExtResource("15_kpmk6")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/TextureRect2"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/TextureRect2"]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 1
 anchors_preset = 8
@@ -773,27 +916,46 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("17_jcc1g")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -232.0
+offset_top = -29.0
+offset_right = 232.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 0
+theme = ExtResource("5_t5282")
+text = "Ação"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("28_w0l22")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = -1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = ExtResource("17_sxwxu")
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = ExtResource("18_cs4k5")
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer/TextureRect2"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer/TextureRect2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -810,62 +972,62 @@ theme_override_colors/font_color = Color(0, 0, 0, 0.588235)
 text = "space"
 horizontal_alignment = 1
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = ExtResource("19_lxv42")
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_t5282")
 theme_override_font_sizes/font_size = 48
 text = "/"
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/HBoxContainer"]
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = ExtResource("20_8xwqj")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_constants/separation = -1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("21_tgmff")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("22_p5uhx")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("5_t5282")
 theme_override_font_sizes/font_size = 48
 text = "/"
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("23_a66dr")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -873,7 +1035,7 @@ size_flags_vertical = 4
 texture = ExtResource("15_kpmk6")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/MarginContainer/MarginContainer/VBoxContainer/TextureRect2"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HUD/MarginContainer/VBoxContainer/TextureRect2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -890,3 +1052,224 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("24_0h56l")
 stretch_mode = 3
+
+[node name="Cover" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_lpu1s")
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_h3ycm")
+
+[node name="Portal" type="TextureRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_2khv8")
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_h3ycm")
+script = ExtResource("31_wg0bi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Portal"]
+libraries = {
+"": SubResource("AnimationLibrary_7yvgl")
+}
+
+[node name="VictoryScreen" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VictoryScreen"]
+custom_minimum_size = Vector2(1280, 800)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("29_w1xa8")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VictoryScreen/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -21.0
+offset_right = 78.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+
+[node name="Victory" type="Label" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_t5282")
+theme_override_colors/font_color = Color(0, 0.733333, 0, 1)
+theme_override_font_sizes/font_size = 80
+text = "VITÓRIA!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Congrats" type="Label" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_t5282")
+theme_override_colors/font_color = Color(0, 0.733333, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "OBRIGADO POR JOGAR MEU GAME!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="RestartButton" type="TextureButton" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("30_cmr3k")
+texture_hover = ExtResource("31_k2x1d")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer/RestartButton"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("32_0wsys")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LooseScreen" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/LooseScreen"]
+custom_minimum_size = Vector2(1280, 800)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("29_w1xa8")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LooseScreen/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -21.0
+offset_right = 78.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+
+[node name="Loose" type="Label" parent="CanvasLayer/LooseScreen/TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_t5282")
+theme_override_colors/font_color = Color(1, 0.0705882, 0.0862745, 1)
+theme_override_font_sizes/font_size = 60
+text = "INFELIZMNTE VOCÊ NÃO FOI RÁPIDO O BASTANTE"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Again" type="Label" parent="CanvasLayer/LooseScreen/TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_t5282")
+theme_override_font_sizes/font_size = 60
+text = "Mas não fique chateado, você pode tentar denovo clicando abaixo."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/LooseScreen/TextureRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/LooseScreen/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="RestartButton" type="TextureButton" parent="CanvasLayer/LooseScreen/TextureRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("30_cmr3k")
+texture_hover = ExtResource("31_k2x1d")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/LooseScreen/TextureRect/VBoxContainer/HBoxContainer/RestartButton"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("32_0wsys")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="time_over" from="CanvasLayer/HUD/VBoxContainer/Countdown" to="." method="_on_countdown_time_over"]
+[connection signal="pressed" from="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/LooseScreen/TextureRect/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

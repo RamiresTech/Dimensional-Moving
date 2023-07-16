@@ -6,6 +6,6 @@ func _physics_process(delta: float) -> void:
 
 	match actual_game_mode:
 		Global.game_modes.GAME2D:
-			text = "2D MODE"
+			text = "Dimensão 2D"
 		Global.game_modes.GAME3D:
-			text = "3D MODE"
+			text = "Dimensão 3D"
