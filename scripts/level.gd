@@ -13,6 +13,7 @@ class_name LevelUm2D
 @onready var victory_screen: MarginContainer = %VictoryScreen
 @onready var loose_screen: MarginContainer = %LooseScreen
 @onready var contdown: CountDown = %Countdown
+@onready var hud_animator: AnimationPlayer = %HudAnimator
 
 const TASKS_FILE_PATH = "res://tasks.json"
 
@@ -34,7 +35,6 @@ func _process(delta: float) -> void:
 
 func start_game() -> void:
 	Global.game_mode = Global.game_modes.GAME2D
-	contdown.countdown_minutes = limit_time
 	var tasks_data = get_tasks_data_from_json_file()
 	var tasks_informations = get_random_tasks(tasks_data)
 
@@ -47,6 +47,9 @@ func start_game() -> void:
 	set_initial_position_of_moveis_2D()
 	select_random_cells_3D(tasks.size())
 	set_initial_position_of_moveis_3D()
+	hud_animator.play("start")
+	await hud_animator.animation_finished
+	contdown.countdown_minutes = limit_time
 	contdown.start_countdown()
 
 

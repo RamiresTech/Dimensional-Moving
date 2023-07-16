@@ -1,5 +1,9 @@
 extends Node
 
+# Scenes Path
+const MAIN_MENU: String = "res://scenes/menus/main_menu.tscn"
+const GAME_SCREEN: String ="res://scenes/levels/level.tscn"
+
 
 enum game_modes{
 	GAME2D,
