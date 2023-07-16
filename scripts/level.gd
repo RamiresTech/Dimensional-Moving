@@ -25,6 +25,8 @@ func _ready():
 	fill_tasks_list()
 	select_random_cells_2D(tasks.size())
 	set_initial_position_of_moveis_2D()
+	select_random_cells_3D(tasks.size())
+	set_initial_position_of_moveis_3D()
 
 func _process(delta: float) -> void:
 	var win = check_victory_condition()
@@ -79,7 +81,7 @@ func set_initial_position_of_moveis_3D() -> void:
 		var movel_instance = task.moveis_3d.get(task.movel_name).instantiate()
 		var movel = movel_instance as Movel3D
 		movel.movel_name = task.movel_name
-		movel.translation = cell.translation
+		movel.position = cell.position
 		table_3d.add_child(movel_instance)
 		cell.content = movel
 		movel.cell = cell

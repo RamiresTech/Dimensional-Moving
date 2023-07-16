@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk7j5ytnourca"]
+[gd_scene load_steps=8 format=3 uid="uid://dk7j5ytnourca"]
 
 [ext_resource type="Texture2D" uid="uid://b6s3y746pxtx2" path="res://assets/sprites/GUI/Menu/arrowSilver_right.png" id="1_rlbxy"]
+[ext_resource type="Script" path="res://scripts/movel_3d.gd" id="1_svceb"]
 [ext_resource type="PackedScene" uid="uid://pwekj2hlwvfm" path="res://assets/models/chair.glb" id="2_uwpcw"]
+[ext_resource type="FontFile" uid="uid://dgr7ev4mi17td" path="res://fonts/WendyOne-Regular.ttf" id="4_tdulr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kbp8e"]
 
@@ -14,18 +16,21 @@ size = Vector3(1, 1, 0.5)
 [node name="Movel3D" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 7
+script = ExtResource("1_svceb")
 
 [node name="MovelBody" type="Node3D" parent="."]
 
-[node name="Sprite3D" type="Sprite3D" parent="MovelBody"]
-transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0.207853, 0.01, 0.121)
+[node name="DirectionIndication" type="Sprite3D" parent="MovelBody"]
+unique_name_in_owner = true
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0.207853, 0.0511377, -0.646542)
 visible = false
 texture = ExtResource("1_rlbxy")
 
 [node name="chair" parent="MovelBody" instance=ExtResource("2_uwpcw")]
-transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0, 0)
+transform = Transform3D(-2.1, 0, -1.83588e-07, 0, 2.1, 0, 1.83588e-07, 0, -2.1, 0.40703, 0, -0.469053)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
 shape = SubResource("BoxShape3D_kbp8e")
 
@@ -64,3 +69,19 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FaceEast"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.199026, 0.493108, -0.22279)
 shape = SubResource("BoxShape3D_y72pq")
+
+[node name="CellName" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.207666, 1.34482, -0.196129)
+visible = false
+billboard = 1
+text = "A1"
+font = ExtResource("4_tdulr")
+
+[connection signal="body_entered" from="FaceNorth" to="." method="_on_face_north_body_entered"]
+[connection signal="body_exited" from="FaceNorth" to="." method="_on_face_body_exited"]
+[connection signal="body_entered" from="FaceSouth" to="." method="_on_face_south_body_entered"]
+[connection signal="body_exited" from="FaceSouth" to="." method="_on_face_body_exited"]
+[connection signal="body_entered" from="FaceWest" to="." method="_on_face_west_body_entered"]
+[connection signal="body_exited" from="FaceWest" to="." method="_on_face_body_exited"]
+[connection signal="body_entered" from="FaceEast" to="." method="_on_face_east_body_entered"]
+[connection signal="body_exited" from="FaceEast" to="." method="_on_face_body_exited"]

@@ -32,7 +32,7 @@ var moveis_2d: Dictionary = {
 
 var moveis_3d: Dictionary = {
 	"poltrona_vermelha": preload("res://scenes/poltrona_vermelha.tscn"),
-	"cadeira": preload("res://scenes/moveis_2d/cadeira.tscn"),
+	"cadeira": preload("res://scenes/moveis_3d/cadeira.tscn"),
 	"sofa_vermelho": preload("res://scenes/moveis_2d/sofa_vermelho.tscn"),
 	"mesa_de_centro": preload("res://scenes/moveis_2d/mesa_de_centro.tscn"),
 
