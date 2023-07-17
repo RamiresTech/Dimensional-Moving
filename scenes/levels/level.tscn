@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://d2ho8kuoruta4"]
+[gd_scene load_steps=58 format=3 uid="uid://d2ho8kuoruta4"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_5qxnk"]
 [ext_resource type="Texture2D" uid="uid://c4kj7s7kyblt6" path="res://assets/sprites/tilesets/tilesheet_complete.png" id="1_bh5e7"]
@@ -35,9 +35,13 @@
 [ext_resource type="Texture2D" uid="uid://uucakbttmq5l" path="res://assets/sprites/GUI/Menu/buttonRound_brown.png" id="31_k2x1d"]
 [ext_resource type="Script" path="res://scripts/portal.gd" id="31_wg0bi"]
 [ext_resource type="Texture2D" uid="uid://cjtinphomhc16" path="res://assets/sprites/GUI/Comands/arrow_counterclockwise.png" id="32_0wsys"]
+[ext_resource type="AudioStream" uid="uid://drnnnctxffx7t" path="res://assets/audios/sfx/teleport.wav" id="32_mcjmb"]
 [ext_resource type="AudioStream" uid="uid://b5kqyhaudky58" path="res://assets/audios/sfx/game-win.mp3" id="36_jpfit"]
+[ext_resource type="Texture2D" uid="uid://h1uyq0s68q5l" path="res://assets/sprites/GUI/Controls/tile_0580.png" id="36_pndy8"]
 [ext_resource type="AudioStream" uid="uid://crsb4kn61dka1" path="res://assets/audios/sfx/complete.ogg" id="36_rradw"]
 [ext_resource type="AudioStream" uid="uid://cpaqwu4triii8" path="res://assets/audios/sfx/empate.wav" id="37_h2p28"]
+[ext_resource type="PackedScene" uid="uid://b06nk681k1ij7" path="res://scenes/menus/transition.tscn" id="41_1b4mc"]
+[ext_resource type="AudioStream" uid="uid://bsly7x3obr5m7" path="res://assets/audios/sfx/ui/main_menu_button.ogg" id="42_f0weh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lpu1s"]
 shader = ExtResource("3_7uap2")
@@ -1338,6 +1342,10 @@ libraries = {
 "": SubResource("AnimationLibrary_7yvgl")
 }
 
+[node name="PortalSound" type="AudioStreamPlayer2D" parent="CanvasLayer/Portal"]
+unique_name_in_owner = true
+stream = ExtResource("32_mcjmb")
+
 [node name="VictoryScreen" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 visible = false
@@ -1399,7 +1407,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 16
 
-[node name="RestartButton" type="TextureButton" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer"]
+[node name="EndButton" type="TextureButton" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture_normal = ExtResource("30_cmr3k")
@@ -1407,8 +1415,7 @@ texture_hover = ExtResource("31_k2x1d")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer/RestartButton"]
-modulate = Color(0, 0, 0, 1)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer/EndButton"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 1
 anchors_preset = 8
@@ -1422,7 +1429,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("32_0wsys")
+texture = ExtResource("36_pndy8")
 expand_mode = 1
 stretch_mode = 5
 
@@ -1529,6 +1536,11 @@ stream = ExtResource("37_h2p28")
 unique_name_in_owner = true
 stream = ExtResource("36_rradw")
 
+[node name="Transition" parent="." instance=ExtResource("41_1b4mc")]
+
+[node name="ButtonSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("42_f0weh")
+
 [connection signal="time_over" from="CanvasLayer/HUD/VBoxContainer/Countdown" to="." method="_on_countdown_time_over"]
-[connection signal="pressed" from="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer/EndButton" to="." method="_on_end_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/LooseScreen/TextureRect/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

@@ -17,6 +17,8 @@ class_name LevelUm2D
 @onready var complete_task_audio: AudioStreamPlayer2D = %CompleteAudio
 @onready var win_audio: AudioStreamPlayer2D = %FaillAudio
 @onready var fail_audio: AudioStreamPlayer2D = %SucessAudio
+@onready var transition: Transition = $Transition
+@onready var button_sounds: AudioStreamPlayer2D = $ButtonSounds
 
 const TASKS_FILE_PATH = "res://tasks.json"
 
@@ -190,6 +192,7 @@ func get_direction_index(direction: String) -> int:
 
 
 func _on_restart_button_pressed() -> void:
+	button_sounds.play()
 	get_tree().reload_current_scene()
 
 
@@ -198,3 +201,10 @@ func _on_countdown_time_over() -> void:
 	cover_screen.show()
 	loose_screen.show()
 	fail_audio.play()
+
+
+func _on_end_button_pressed() -> void:
+	button_sounds.play()
+	transition.play_in()
+	await transition.animation.animation_finished
+	get_tree().change_scene_to_file(Global.MAIN_MENU)
