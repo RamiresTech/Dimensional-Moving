@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://d2ho8kuoruta4"]
+[gd_scene load_steps=54 format=3 uid="uid://d2ho8kuoruta4"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_5qxnk"]
 [ext_resource type="Texture2D" uid="uid://c4kj7s7kyblt6" path="res://assets/sprites/tilesets/tilesheet_complete.png" id="1_bh5e7"]
@@ -35,6 +35,9 @@
 [ext_resource type="Texture2D" uid="uid://uucakbttmq5l" path="res://assets/sprites/GUI/Menu/buttonRound_brown.png" id="31_k2x1d"]
 [ext_resource type="Script" path="res://scripts/portal.gd" id="31_wg0bi"]
 [ext_resource type="Texture2D" uid="uid://cjtinphomhc16" path="res://assets/sprites/GUI/Comands/arrow_counterclockwise.png" id="32_0wsys"]
+[ext_resource type="AudioStream" uid="uid://b5kqyhaudky58" path="res://assets/audios/sfx/game-win.mp3" id="36_jpfit"]
+[ext_resource type="AudioStream" uid="uid://crsb4kn61dka1" path="res://assets/audios/sfx/complete.ogg" id="36_rradw"]
+[ext_resource type="AudioStream" uid="uid://cpaqwu4triii8" path="res://assets/audios/sfx/empate.wav" id="37_h2p28"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lpu1s"]
 shader = ExtResource("3_7uap2")
@@ -1513,6 +1516,18 @@ grow_vertical = 2
 texture = ExtResource("32_0wsys")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="SucessAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("36_jpfit")
+
+[node name="FaillAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("37_h2p28")
+
+[node name="CompleteAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("36_rradw")
 
 [connection signal="time_over" from="CanvasLayer/HUD/VBoxContainer/Countdown" to="." method="_on_countdown_time_over"]
 [connection signal="pressed" from="CanvasLayer/VictoryScreen/TextureRect/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

@@ -14,6 +14,9 @@ class_name LevelUm2D
 @onready var loose_screen: MarginContainer = %LooseScreen
 @onready var contdown: CountDown = %Countdown
 @onready var hud_animator: AnimationPlayer = %HudAnimator
+@onready var complete_task_audio: AudioStreamPlayer2D = %CompleteAudio
+@onready var win_audio: AudioStreamPlayer2D = %FaillAudio
+@onready var fail_audio: AudioStreamPlayer2D = %SucessAudio
 
 const TASKS_FILE_PATH = "res://tasks.json"
 
@@ -22,6 +25,7 @@ var selected_cells_3D: Array
 var tasks: Array[Task]
 
 func _ready():
+	MusicPlayer.change_music(MusicPlayer.GAME_MUSIC)
 	start_game()
 
 func _process(delta: float) -> void:
@@ -32,6 +36,7 @@ func _process(delta: float) -> void:
 		await get_tree().create_timer(0.5).timeout
 		cover_screen.show()
 		victory_screen.show()
+		win_audio.play()
 
 func start_game() -> void:
 	Global.game_mode = Global.game_modes.GAME2D
@@ -137,6 +142,7 @@ func check_victory_condition_2D() -> bool:
 
 			if movel.movel_name == task.movel_name and movel.face_front_by == get_direction_index(direction):
 				movel.in_place()
+				complete_task_audio.play()
 				task.task_2d_complete()
 
 		response = false
@@ -158,6 +164,7 @@ func check_victory_condition_3D() -> bool:
 
 			if movel.movel_name == task.movel_name and movel.face_front_by == get_direction_index(direction):
 				movel.in_place()
+				complete_task_audio.play()
 				task.task_3d_complete()
 
 		response = false
@@ -190,3 +197,4 @@ func _on_countdown_time_over() -> void:
 	await get_tree().create_timer(0.5).timeout
 	cover_screen.show()
 	loose_screen.show()
+	fail_audio.play()

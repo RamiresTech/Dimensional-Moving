@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://bcx3fca8unx7r"]
+
+[ext_resource type="Texture2D" uid="uid://bsvx4cfroj3e3" path="res://assets/images/menus/background.png" id="1_8gxna"]
+[ext_resource type="Script" path="res://scripts/apresentation_screen.gd" id="1_lgxil"]
+[ext_resource type="Texture2D" uid="uid://b7svt5nm7ddm3" path="res://assets/sprites/GUI/Menu/arrowBeige_right.png" id="3_4nuk3"]
+[ext_resource type="Texture2D" uid="uid://cmvny2setc6tt" path="res://assets/sprites/GUI/Menu/buttonLong_beige.png" id="3_ngyto"]
+[ext_resource type="Theme" uid="uid://cdydlki1v17ye" path="res://resources/default.tres" id="4_k0vt8"]
+[ext_resource type="Texture2D" uid="uid://bnyci5a7dchco" path="res://assets/sprites/GUI/Menu/arrowBrown_right.png" id="4_nctpa"]
+[ext_resource type="PackedScene" uid="uid://b06nk681k1ij7" path="res://scenes/menus/transition.tscn" id="5_hbr3f"]
+[ext_resource type="AudioStream" uid="uid://bsly7x3obr5m7" path="res://assets/audios/sfx/ui/main_menu_button.ogg" id="6_gkac8"]
+[ext_resource type="Texture2D" uid="uid://cfpbw1atnpp3o" path="res://assets/sprites/GUI/Menu/buttonLong_beige_pressed.png" id="8_u15n1"]
+[ext_resource type="Texture2D" uid="uid://bk1kcj7lalxxf" path="res://assets/sprites/GUI/Menu/buttonLong_brown.png" id="9_dfaby"]
+
+[node name="ApresentationScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lgxil")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.843137)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8gxna")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 24
+
+[node name="MessagesBox" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Next" type="TextureButton" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("3_4nuk3")
+texture_hover = ExtResource("4_nctpa")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="StartButton" type="TextureButton" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+y_sort_enabled = true
+custom_minimum_size = Vector2(480, 160)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -160.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("3_ngyto")
+texture_pressed = ExtResource("8_u15n1")
+texture_hover = ExtResource("9_dfaby")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/StartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_k0vt8")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "INICIAR"
+
+[node name="Transition" parent="." instance=ExtResource("5_hbr3f")]
+
+[node name="ButtonSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_gkac8")
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]

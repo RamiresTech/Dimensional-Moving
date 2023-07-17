@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b0bbpp1gbhe5h"]
 
-[ext_resource type="Script" path="res://scripts/splash_screen.gd" id="1_r31hp"]
-[ext_resource type="Texture2D" uid="uid://b1xfmj4coaw2v" path="res://assets/images/menus/logo-bgout-colored-complete.png" id="2_d82j8"]
-[ext_resource type="Texture2D" uid="uid://btv6l3ulmx3dp" path="res://assets/images/menus/logo-bgout-color.png" id="3_i4u2p"]
-[ext_resource type="AudioStream" uid="uid://cxiraaeqtxlwv" path="res://assets/audios/sfx/ui/welcome.wav" id="4_qfpvh"]
+[ext_resource type="Script" path="res://scripts/splash_screen.gd" id="1_33q2a"]
+[ext_resource type="Texture2D" uid="uid://b1xfmj4coaw2v" path="res://assets/images/menus/logo-bgout-colored-complete.png" id="2_a24cw"]
+[ext_resource type="Texture2D" uid="uid://btv6l3ulmx3dp" path="res://assets/images/menus/logo-bgout-color.png" id="3_7lu0c"]
+[ext_resource type="AudioStream" uid="uid://cxiraaeqtxlwv" path="res://assets/audios/sfx/ui/welcome.wav" id="4_sbjv8"]
 
 [sub_resource type="Animation" id="Animation_iqky5"]
 length = 0.001
@@ -259,7 +259,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_r31hp")
+script = ExtResource("1_33q2a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -277,13 +277,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -309.5
-offset_top = -201.5
-offset_right = 309.503
-offset_bottom = 201.5
+offset_left = 650.5
+offset_top = 338.5
+offset_right = 1269.5
+offset_bottom = 741.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_d82j8")
+texture = ExtResource("2_a24cw")
 
 [node name="Logo" type="TextureRect" parent="ColorRect"]
 layout_mode = 1
@@ -292,14 +292,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1160.0
-offset_top = -425.0
-offset_right = -774.0
-offset_bottom = -17.0
+offset_left = -200.0
+offset_top = 115.0
+offset_right = 186.0
+offset_bottom = 523.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_i4u2p")
+texture = ExtResource("3_7lu0c")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -329,4 +329,4 @@ libraries = {
 }
 
 [node name="Sounds" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_qfpvh")
+stream = ExtResource("4_sbjv8")

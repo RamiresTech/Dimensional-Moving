@@ -15,6 +15,7 @@ enum faces{
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var direction_indication: Sprite2D = %DirectionIndication
 @onready var cell_name_label: Label = %CellName
+@onready var arrastando_audio: AudioStreamPlayer2D = %ArrastandoAudio
 
 var tween: Tween
 var player_in_face: String = ""
@@ -118,6 +119,8 @@ func chance_cell(new_cell: Cell) -> void:
 func move_to_cell() -> void:
 	tween = create_tween()
 	var target_position = cell.position
+
+	arrastando_audio.play()
 
 	tween.tween_property(self, "position", target_position, 0.2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 

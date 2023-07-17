@@ -1,5 +1,13 @@
 extends Node
 
+const CHARACTERS: Dictionary = {
+	"M": "res://assets/sprites/characters/male.png",
+	"F": "res://assets/sprites/characters/female.png"
+}
+
+var selected_character: String = "M"
+var player_name: String = "Player"
+
 
 enum actions{
 	PUSH,

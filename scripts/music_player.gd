@@ -7,6 +7,7 @@ const TRANSITION_TIME: float = 3
 const MUSICS_FOLDER_PATH: String = "res://assets/audios/musics/"
 
 const MAIN_MENU_MUSIC = "res://assets/audios/musics/Remember.mp3"
+const GAME_MUSIC = "res://assets/audios/musics/TOMOLI.mp3"
 
 var music_player: AudioStreamPlayer
 var actual_music: String

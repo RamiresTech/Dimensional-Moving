@@ -28,7 +28,7 @@ func _on_start_button_pressed() -> void:
 	button_sounds.play()
 	transition.play_in()
 	await transition.animation.animation_finished
-	get_tree().change_scene_to_file(Global.GAME_SCREEN)
+	get_tree().change_scene_to_file(Global.CHARACTER_SELECTION)
 
 
 

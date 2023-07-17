@@ -1,8 +1,16 @@
 extends CharacterBody2D
 class_name Player2D
 
+@onready var player_body: Sprite2D = %PlayerBody
 
 const SPEED: float = 300.0
+
+
+func _ready() -> void:
+	var character_texture_path: String = MainPlayer.CHARACTERS.get(
+		MainPlayer.selected_character
+	)
+	player_body.texture = load(character_texture_path)
 
 
 func _physics_process(delta: float) -> void:

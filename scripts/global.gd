@@ -2,6 +2,8 @@ extends Node
 
 # Scenes Path
 const MAIN_MENU: String = "res://scenes/menus/main_menu.tscn"
+const CHARACTER_SELECTION: String = "res://scenes/menus/select_player.tscn"
+const APRESENTATION: String = "res://scenes/menus/apresentation_screen.tscn"
 const GAME_SCREEN: String ="res://scenes/levels/level.tscn"
 
 
