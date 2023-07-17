@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dspi517mm17d4"]
+[gd_scene load_steps=14 format=3 uid="uid://dspi517mm17d4"]
 
 [ext_resource type="Script" path="res://scripts/movel_3d.gd" id="1_v71ut"]
 [ext_resource type="Texture2D" uid="uid://b6s3y746pxtx2" path="res://assets/sprites/GUI/Menu/arrowSilver_right.png" id="2_axr0t"]
 [ext_resource type="Texture2D" uid="uid://ctus02ptq3v50" path="res://assets/sprites/GUI/Menu/iconCheck_grey.png" id="3_62djn"]
 [ext_resource type="FontFile" uid="uid://dgr7ev4mi17td" path="res://fonts/WendyOne-Regular.ttf" id="4_5ysed"]
+[ext_resource type="AudioStream" uid="uid://lhbgn1jwohkl" path="res://assets/audios/sfx/arrastando.wav" id="5_feqbt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7hla"]
 resource_name = "carpet"
@@ -154,6 +155,10 @@ visible = false
 billboard = 1
 text = "A1"
 font = ExtResource("4_5ysed")
+
+[node name="ArrastandoAudio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_feqbt")
 
 [connection signal="body_entered" from="FaceNorth" to="." method="_on_face_north_body_entered" flags=18]
 [connection signal="body_exited" from="FaceNorth" to="." method="_on_face_body_exited" flags=18]

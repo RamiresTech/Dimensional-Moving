@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1bofl0tu3d0q"]
+[gd_scene load_steps=10 format=3 uid="uid://d1bofl0tu3d0q"]
 
 [ext_resource type="Script" path="res://scripts/movel_3d.gd" id="1_b30a2"]
 [ext_resource type="Texture2D" uid="uid://b6s3y746pxtx2" path="res://assets/sprites/GUI/Menu/arrowSilver_right.png" id="2_u4u05"]
 [ext_resource type="PackedScene" uid="uid://cfbjw1xeoy34f" path="res://assets/models/tableRound.glb" id="3_ctp5a"]
 [ext_resource type="Texture2D" uid="uid://ctus02ptq3v50" path="res://assets/sprites/GUI/Menu/iconCheck_grey.png" id="4_e0dse"]
 [ext_resource type="FontFile" uid="uid://dgr7ev4mi17td" path="res://fonts/WendyOne-Regular.ttf" id="5_7684l"]
+[ext_resource type="AudioStream" uid="uid://lhbgn1jwohkl" path="res://assets/audios/sfx/arrastando.wav" id="6_750qf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kbp8e"]
 
@@ -85,6 +86,10 @@ visible = false
 billboard = 1
 text = "A1"
 font = ExtResource("5_7684l")
+
+[node name="ArrastandoAudio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_750qf")
 
 [connection signal="body_entered" from="FaceNorth" to="." method="_on_face_north_body_entered" flags=18]
 [connection signal="body_exited" from="FaceNorth" to="." method="_on_face_body_exited" flags=18]

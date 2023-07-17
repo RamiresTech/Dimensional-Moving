@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsiyff2v2485f"]
+[gd_scene load_steps=8 format=3 uid="uid://dsiyff2v2485f"]
 
 [ext_resource type="Script" path="res://scripts/movel.gd" id="1_tmhcb"]
 [ext_resource type="Texture2D" uid="uid://2aojlluinjqo" path="res://assets/sprites/tiles/chair.png" id="2_o22xq"]
 [ext_resource type="Texture2D" uid="uid://b6s3y746pxtx2" path="res://assets/sprites/GUI/Menu/arrowSilver_right.png" id="3_50rqy"]
 [ext_resource type="Theme" uid="uid://cdydlki1v17ye" path="res://resources/default.tres" id="4_eyg8e"]
+[ext_resource type="AudioStream" uid="uid://lhbgn1jwohkl" path="res://assets/audios/sfx/arrastando.wav" id="5_lvrqi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4eqly"]
 size = Vector2(64, 64)
@@ -75,6 +76,10 @@ theme = ExtResource("4_eyg8e")
 text = "A1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ArrastandoAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_lvrqi")
 
 [connection signal="body_entered" from="FaceNorth" to="." method="_on_face_north_body_entered" flags=18]
 [connection signal="body_exited" from="FaceNorth" to="." method="_on_face_body_exited" flags=18]
