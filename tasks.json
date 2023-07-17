@@ -1,0 +1,32 @@
+{
+    "levels": [
+        {
+            "tasks": [
+                [
+                    "mesa_de_centro",
+                    "C",
+                    4,
+                    "E"
+                ],
+                [
+                    "poltrona_vermelha",
+                    "E",
+                    4,
+                    "W"
+                ],
+                [
+                    "cadeira",
+                    "G",
+                    8,
+                    "N"
+                ],
+                [
+                    "sofa_vermelho",
+                    "C",
+                    2,
+                    "S"
+                ]
+            ]
+        }
+    ]
+}

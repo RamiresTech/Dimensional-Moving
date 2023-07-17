@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dheunygc4jvd5"]
+
+[ext_resource type="PackedScene" uid="uid://cdkb81076eell" path="res://scenes/movel2D.tscn" id="1_mvd3t"]
+[ext_resource type="Texture2D" uid="uid://b4y0x5opagp82" path="res://assets/sprites/tiles/tile_475.png" id="2_jr62v"]
+[ext_resource type="Texture2D" uid="uid://c3x2kqjkr0f3j" path="res://assets/sprites/tiles/tile_474.png" id="3_71w88"]
+[ext_resource type="Texture2D" uid="uid://d0eb5g62um80f" path="res://assets/sprites/tiles/tile_476.png" id="4_xwbmj"]
+
+[node name="SofaVermelho" instance=ExtResource("1_mvd3t")]
+
+[node name="MovelBody" parent="." index="0"]
+texture = ExtResource("2_jr62v")
+
+[node name="Sprite2D" type="Sprite2D" parent="MovelBody" index="1"]
+position = Vector2(-64, 0)
+texture = ExtResource("3_71w88")
+
+[node name="Sprite2D2" type="Sprite2D" parent="MovelBody" index="2"]
+position = Vector2(64, 0)
+texture = ExtResource("4_xwbmj")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = true
+scale = Vector2(2.96, 1)
+
+[node name="FaceNorth" parent="." index="2"]
+scale = Vector2(1, 3.12)
+
+[node name="FaceSouth" parent="." index="3"]
+scale = Vector2(1, 3.16)
+
+[node name="FaceEast" parent="." index="4"]
+position = Vector2(74, 0)
+scale = Vector2(3.36, 1)
+
+[node name="FaceWest" parent="." index="5"]
+position = Vector2(-85, -1)
+scale = Vector2(3.16, 1)

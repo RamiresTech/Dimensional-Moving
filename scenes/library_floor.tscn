@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://deep2hgcawqaf"]
+
+[ext_resource type="PackedScene" uid="uid://bo7pgq062vd75" path="res://assets/models/floorFull.glb" id="1_0vn87"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="floorFull" parent="." instance=ExtResource("1_0vn87")]

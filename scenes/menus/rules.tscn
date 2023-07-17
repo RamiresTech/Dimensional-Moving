@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsh4oghwbyefv"]
+
+[ext_resource type="Texture2D" uid="uid://cg852yskggh51" path="res://assets/sprites/characters/recepcionist.jpg" id="1_t2nhg"]
+[ext_resource type="Texture2D" uid="uid://cmvny2setc6tt" path="res://assets/sprites/GUI/Menu/buttonLong_beige.png" id="2_k43wd"]
+[ext_resource type="Theme" uid="uid://cdydlki1v17ye" path="res://resources/default.tres" id="3_odiwf"]
+[ext_resource type="Texture2D" uid="uid://cfpbw1atnpp3o" path="res://assets/sprites/GUI/Menu/buttonLong_beige_pressed.png" id="4_pdb28"]
+[ext_resource type="Texture2D" uid="uid://dgrxsf3k7qclm" path="res://assets/images/menus/quadro.png" id="5_mw7o3"]
+
+[node name="Rules" type="VBoxContainer"]
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Picture" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("1_t2nhg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MessageBox" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(1608, 200)
+layout_mode = 2
+texture = ExtResource("2_k43wd")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MessageBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 16
+
+[node name="Message" type="Label" parent="HBoxContainer/MessageBox/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1512, 0)
+layout_mode = 2
+theme = ExtResource("3_odiwf")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Você recebe as tasks no formato detalhado abaixo, aproximesse de um móvel para ver a indicação da linha e coluna que ele ocupa atualmente. Use as ações de empurrar, puxar e girar para a tarefa."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1324, 600)
+layout_mode = 2
+texture = ExtResource("4_pdb28")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+custom_minimum_size = Vector2(1212.12, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_mw7o3")
+expand_mode = 1
+stretch_mode = 5

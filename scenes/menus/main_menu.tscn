@@ -1,0 +1,205 @@
+[gd_scene load_steps=15 format=3 uid="uid://ckbl4psbyds2v"]
+
+[ext_resource type="Texture2D" uid="uid://bsvx4cfroj3e3" path="res://assets/images/menus/background.png" id="1_pu2t6"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_qup4v"]
+[ext_resource type="Shader" path="res://shaders/starfield_shader_v5.gdshader" id="2_7ftjn"]
+[ext_resource type="Texture2D" uid="uid://bhqrwexqi3nvm" path="res://assets/images/bg/bg.png" id="3_iubrj"]
+[ext_resource type="Texture2D" uid="uid://bbjtdup0rqljx" path="res://assets/images/menus/LOGO.png" id="4_2uvu4"]
+[ext_resource type="Texture2D" uid="uid://cmvny2setc6tt" path="res://assets/sprites/GUI/Menu/buttonLong_beige.png" id="5_q04pb"]
+[ext_resource type="Texture2D" uid="uid://cfpbw1atnpp3o" path="res://assets/sprites/GUI/Menu/buttonLong_beige_pressed.png" id="6_lgtik"]
+[ext_resource type="Texture2D" uid="uid://bk1kcj7lalxxf" path="res://assets/sprites/GUI/Menu/buttonLong_brown.png" id="7_k2xcs"]
+[ext_resource type="Theme" uid="uid://cdydlki1v17ye" path="res://resources/default.tres" id="8_73tke"]
+[ext_resource type="PackedScene" uid="uid://b06nk681k1ij7" path="res://scenes/menus/transition.tscn" id="10_6n1se"]
+[ext_resource type="Texture2D" uid="uid://cr8b40imtl4n" path="res://assets/images/menus/instagram.png" id="10_f11jx"]
+[ext_resource type="Texture2D" uid="uid://bj1ux2hbpxi11" path="res://assets/images/menus/linkedin.png" id="11_jq6ps"]
+[ext_resource type="AudioStream" uid="uid://bsly7x3obr5m7" path="res://assets/audios/sfx/ui/main_menu_button.ogg" id="11_rm88h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_io77f"]
+shader = ExtResource("2_7ftjn")
+shader_parameter/dimensions = Vector2(10, 1080)
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.5
+shader_parameter/small_stars_near_size = 1.0
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.5
+shader_parameter/large_stars_near_size = 1.0
+shader_parameter/far_stars_color = Color(0.5, 0, 1, 1)
+shader_parameter/near_stars_color = Color(1, 1, 1, 1)
+shader_parameter/base_scroll_speed = 1.0
+shader_parameter/additional_scroll_speed = 1.0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qup4v")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pu2t6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_io77f")
+custom_minimum_size = Vector2(100, 1080)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -403.0
+offset_top = 540.0
+offset_right = -303.0
+offset_bottom = 1620.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+texture = ExtResource("3_iubrj")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_io77f")
+custom_minimum_size = Vector2(100, 1080)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 582.0
+offset_top = 540.0
+offset_right = 682.0
+offset_bottom = 1620.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+texture = ExtResource("3_iubrj")
+expand_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 240
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_2uvu4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 48
+
+[node name="StartButton" type="TextureButton" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 160)
+layout_mode = 2
+texture_normal = ExtResource("5_q04pb")
+texture_pressed = ExtResource("6_lgtik")
+texture_hover = ExtResource("7_k2xcs")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_73tke")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "JOGAR"
+
+[node name="QuitButton" type="TextureButton" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 160)
+layout_mode = 2
+texture_normal = ExtResource("5_q04pb")
+texture_pressed = ExtResource("6_lgtik")
+texture_hover = ExtResource("7_k2xcs")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/QuitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_73tke")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "SAIR"
+
+[node name="Social" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="InstagramButton" type="TextureButton" parent="CanvasLayer/MarginContainer/Social"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("10_f11jx")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="LinkedinButton" type="TextureButton" parent="CanvasLayer/MarginContainer/Social"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture_normal = ExtResource("11_jq6ps")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Transition" parent="." instance=ExtResource("10_6n1se")]
+
+[node name="ButtonSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_rm88h")
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Social/InstagramButton" to="." method="_on_instagram_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/Social/LinkedinButton" to="." method="_on_linkedin_button_pressed"]

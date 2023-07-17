@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://romhhehp66ev"]
+
+[ext_resource type="Script" path="res://scripts/cell.gd" id="1_an8dc"]
+[ext_resource type="Texture2D" uid="uid://cjfefbmu1sjia" path="res://assets/sprites/tiles/tile_96.png" id="2_6rmqt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4x8p"]
+albedo_texture = ExtResource("2_6rmqt")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ysl11"]
+material = SubResource("StandardMaterial3D_m4x8p")
+size = Vector3(1, 0.15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5ary"]
+size = Vector3(1, 0.15, 1)
+
+[node name="cell3D" type="StaticBody3D"]
+collision_mask = 7
+script = ExtResource("1_an8dc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ysl11")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_o5ary")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlvxqs28dpoai"]
+
+[ext_resource type="PackedScene" uid="uid://cdkb81076eell" path="res://scenes/movel2D.tscn" id="1_qiqf5"]
+[ext_resource type="Texture2D" uid="uid://v5bt4c5x35vi" path="res://assets/sprites/tiles/cadeira.png" id="2_hnvf4"]
+
+[node name="Cadeira" instance=ExtResource("1_qiqf5")]
+
+[node name="MovelBody" parent="." index="0"]
+texture = ExtResource("2_hnvf4")

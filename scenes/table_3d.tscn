@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0hvhrwmwpmrm"]
+
+[ext_resource type="Script" path="res://scripts/table_3d.gd" id="1_41ws2"]
+[ext_resource type="PackedScene" uid="uid://romhhehp66ev" path="res://scenes/cell_3d.tscn" id="2_ts88c"]
+
+[node name="Table3D" type="Node3D"]
+script = ExtResource("1_41ws2")
+cell_template = ExtResource("2_ts88c")
+cell_size = 1.0

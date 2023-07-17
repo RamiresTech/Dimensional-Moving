@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bypl0kqyvxgk"]
+
+[ext_resource type="PackedScene" uid="uid://dk7j5ytnourca" path="res://scenes/movel_3d.tscn" id="1_soxx7"]
+
+[node name="Cadeira" instance=ExtResource("1_soxx7")]
+
+[node name="DirectionIndication" parent="MovelBody" index="0"]
+visible = true
