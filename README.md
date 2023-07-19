@@ -1,5 +1,10 @@
-# Dimensionsal Moving
-![image](https://github.com/RamiresTech/Dimensional-Moving/assets/55406858/26f65b87-c068-4e4c-a061-e670dc944f95)
+<p align="center">
+  <img width="739" alt="image" src="https://github.com/RamiresTech/Dimensional-Moving/assets/55406858/26f65b87-c068-4e4c-a061-e670dc944f95">
+</p>
+
+
+[![Play my Game in Itchio](https://github.com/RamiresTech/Dimensional-Moving/assets/55406858/6a8fc08e-7f43-4a5e-822f-da21425d103d)](https://ramirestechgames.itch.io/dimensional-moving)
+
 
 ## Description
 
